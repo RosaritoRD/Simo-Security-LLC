@@ -1,166 +1,394 @@
-{
-  "company": {
-    "name": "Simo Security & Consulting LLC",
-    "shortName": "Simo Security",
-    "owner": "Athier Simo",
-    "phone": "(201) 312-3509",
-    "email": "info@simosecurity.com",
-    "location": "New York City Metro Area",
-    "licensed": "Licensed & Insured in New York State",
-    "year": 2026
-  },
-  "navigation": [
-    { "label": "Home", "href": "#hero", "external": false },
-    { "label": "Services", "href": "#services", "external": false },
-    { "label": "Executive Protection", "href": "#executive", "external": false },
-    { "label": "Consulting", "href": "#consulting", "external": false },
-    { "label": "Transportation", "href": "#transport", "external": false },
-    { "label": "Gallery", "href": "#gallery", "external": false },
-    { "label": "Testimonials", "href": "#testimonials", "external": false },
-    { "label": "About", "href": "#about", "external": false },
-    { "label": "Contact", "href": "#contact", "external": false }
-  ],
-  "hero": {
-    "title": "Elite Protection. Absolute Discretion.",
-    "subtitle": "High-end security, executive protection, consulting & secure transport for NYC's most demanding clients — nightlife, events, VIPs & corporations.",
-    "cta": {
-      "text": "Request Confidential Quote",
-      "href": "#contact"
-    },
-    "background": {
-      "type": "video",
-      "src": "https://assets.mixkit.co/videos/preview/mixkit-city-traffic-at-night-458-large.mp4",
-      "fallbackImage": "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=90&w=2400",
-      "overlay": "rgba(0,0,0,0.75)",
-      "videoOptions": {
-        "autoplay": true,
-        "loop": true,
-        "muted": true,
-        "playsinline": true
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simo Security & Consulting LLC — Elite Protection in NYC</title>
+  <meta name="description" content="Professional security services, executive protection, consulting and secure transportation for nightlife, private events and VIPs in New York City."/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #070b14;
+      --surface: #0f1624;
+      --text: #e5efff;
+      --accent: #5ea8ff;
+      --accent-dark: #3b82f6;
+      --accent-glow: rgba(94, 168, 255, 0.28);
+      --glass: rgba(15, 22, 36, 0.65);
+      --border: rgba(94, 168, 255, 0.18);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── Navbar ── */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      background: rgba(7, 11, 20, 0.75);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.4s ease;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 0;
+    }
+
+    .logo {
+      font-size: 1.95rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, #5ea8ff, #a5c8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2.5px;
+      bottom: -6px;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.35s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2.2rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* ── Hero con Video de fondo ── */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    #hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(7,11,20,0.45), rgba(7,11,20,0.85) 70%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 11vw, 9.5rem);
+      line-height: 0.92;
+      margin-bottom: 1.6rem;
+      background: linear-gradient(90deg, #fff, #d1e5ff, #5ea8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.3rem, 4vw, 1.8rem);
+      max-width: 820px;
+      margin: 0 auto 3rem;
+      opacity: 0.92;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, #3b82f6, #60a5fa);
+      color: white;
+      padding: 1.1rem 3rem;
+      border-radius: 999px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 12px 40px var(--accent-glow);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-8px) scale(1.06);
+      box-shadow: 0 25px 70px var(--accent-glow);
+    }
+
+    /* ── Secciones ── */
+    section {
+      padding: 10rem 0;
+    }
+
+    h2 {
+      font-size: clamp(3rem, 7vw, 6.2rem);
+      text-align: center;
+      margin-bottom: 5.5rem;
+      background: linear-gradient(90deg, #5ea8ff, #a5c8ff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(18px) saturate(200%);
+      -webkit-backdrop-filter: blur(18px) saturate(200%);
+      border: 1px solid var(--border);
+      border-radius: 1.6rem;
+      padding: 2.8rem;
+      transition: all 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-18px);
+      border-color: var(--accent);
+      box-shadow: 0 30px 80px var(--accent-glow);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      font-size: 1.85rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card a.external {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.4rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .card a.external:hover {
+      transform: translateX(6px);
+      opacity: 0.9;
+    }
+
+    .card a.external::after {
+      content: '↗';
+      font-size: 1.1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #05070f;
+      text-align: center;
+      padding: 5rem 1rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      opacity: 0.7;
+      font-size: 0.95rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(7,11,20,0.98);
+        backdrop-filter: blur(16px);
+        padding: 2.5rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      h2 {
+        font-size: 3.4rem;
+      }
+
+      .hero-title {
+        font-size: 4.8rem;
       }
     }
-  },
-  "sections": {
-    "services": {
-      "title": "Core Protection Services",
-      "cards": [
-        {
-          "title": "Nightlife & Venue Security",
-          "description": "Access control, crowd dynamics, VIP gating and real-time incident response for Manhattan & Brooklyn's premier clubs and lounges.",
-          "externalLink": "https://example.com/nightlife-security-details",
-          "externalLinkText": "Learn More →"
-        },
-        {
-          "title": "Private Events & High-Profile Gatherings",
-          "description": "Bespoke security for weddings, launches, after-parties, rooftops and ultra-exclusive NYC functions.",
-          "externalLink": "https://example.com/private-events-security",
-          "externalLinkText": "Learn More →"
-        }
-      ]
-    },
-    "executiveProtection": {
-      "title": "Executive Protection Services",
-      "cards": [
-        {
-          "title": "Close Protection & Bodyguarding",
-          "description": "Discreet, highly trained executive protection for CEOs, celebrities, high-net-worth individuals, and dignitaries in New York City."
-        },
-        {
-          "title": "Travel & Advance Security",
-          "description": "Secure travel planning, route reconnaissance, hotel sweeps, and 24/7 close protection details."
-        },
-        {
-          "title": "Threat Assessment & Risk Management",
-          "description": "Personalized threat evaluations, advance security surveys, and proactive strategies."
-        }
-      ]
-    },
-    "consulting": {
-      "title": "Security Consulting",
-      "cards": [
-        {
-          "title": "Venue Risk Assessments & Audits",
-          "description": "Comprehensive evaluations of nightclubs, lounges, and event spaces."
-        },
-        {
-          "title": "Emergency & Crowd Management Plans",
-          "description": "Custom safety protocols, evacuation strategies, and incident response."
-        },
-        {
-          "title": "Staff Training & Compliance",
-          "description": "Training on de-escalation, ID verification, alcohol laws, and emergencies."
-        }
-      ]
-    },
-    "transportation": {
-      "title": "Secure Transportation",
-      "cards": [
-        {
-          "title": "VIP & Executive Transfers",
-          "description": "Discreet, secure transport for celebrities, executives, and high-profile guests across NYC."
-        },
-        {
-          "title": "Protected Nightlife Shuttles",
-          "description": "Safe group transport with professional drivers and optional security escort."
-        },
-        {
-          "title": "Event Arrival & Departure Coordination",
-          "description": "Seamless logistics with full route planning and real-time monitoring."
-        }
-      ]
-    },
-    "gallery": {
-      "title": "Event Gallery",
-      "description": "Real moments from the events we've protected in NYC.",
-      "images": [
-        "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800",
-        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800",
-        "https://images.unsplash.com/photo-1505373877291-9030afd392fe?w=800",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800"
-      ]
-    },
-    "testimonials": {
-      "title": "What Our Clients Say",
-      "items": [
-        {
-          "text": "Outstanding protection for our rooftop launch party in Manhattan. Professional and discreet.",
-          "author": "Event Planner, Brooklyn"
-        },
-        {
-          "text": "Their executive protection team made our CEO's NYC visit completely secure.",
-          "author": "Corporate Executive, Midtown"
-        },
-        {
-          "text": "Best security consulting we've had for our lounge. Transformed our operations.",
-          "author": "Lounge Owner, Lower East Side"
-        }
-      ]
-    },
-    "about": {
-      "title": "About Simo Security & Consulting LLC",
-      "text": "Based in the New York City metro area, we specialize in high-end private security, executive protection, consulting, and secure transportation for nightlife, events, and VIP clients across the five boroughs.",
-      "owner": "Athier Simo"
-    },
-    "contact": {
-      "title": "Get Protected — Contact Us",
-      "form": {
-        "fields": ["Name", "Email", "Phone", "Message"],
-        "submitText": "Submit Securely"
-      },
-      "info": {
-        "phone": "(201) 312-3509",
-        "email": "info@simosecurity.com"
-      }
-    }
-  },
-  "footer": {
-    "copyright": "© 2026 Simo Security & Consulting LLC — Licensed & Insured • New York Metro",
-    "owner": "Owner: Athier Simo"
-  },
-  "styles": {
-    "theme": "dark",
-    "accentColor": "#60a5fa",
-    "glassEffect": true,
-    "videoBackground": true
-  }
-}
+  </style>
+</head>
+<body>
+
+  <!-- Video Background Hero -->
+  <section id="hero">
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=90&w=2400">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-city-traffic-at-night-458-large.mp4" type="video/mp4">
+      <!-- Puedes reemplazar con tu propio video -->
+    </video>
+
+    <div class="hero-content">
+      <h1 class="hero-title">Elite Protection.<br>Absolute Discretion.</h1>
+      <p class="hero-subtitle">High-end security • Executive protection • Consulting • Secure transportation for nightlife, private events, VIPs and corporations in New York City.</p>
+      <a href="#contact" class="btn-primary">Request Confidential Quote</a>
+    </div>
+  </section>
+
+  <!-- Navbar (después del hero para que no tape el video) -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Simo Security</div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#executive">Executive Protection</a></li>
+          <li><a href="#consulting">Consulting</a></li>
+          <li><a href="#transport">Transportation</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">☰</div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Core Services -->
+  <section id="services">
+    <div class="container">
+      <h2>Core Protection Services</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Nightlife & Venue Security</h3>
+          <p>Access control, crowd dynamics, VIP gating and real-time incident response for Manhattan & Brooklyn's premier clubs and lounges.</p>
+          <a href="https://example.com/nightlife-security" target="_blank" rel="noopener" class="external">View Case Studies →</a>
+        </div>
+
+        <div class="card">
+          <h3>Private Events & High-Profile Gatherings</h3>
+          <p>Bespoke security for weddings, product launches, after-parties, rooftops and ultra-exclusive NYC functions.</p>
+          <a href="https://example.com/private-events" target="_blank" rel="noopener" class="external">See Recent Events →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resto de secciones (puedes copiar el patrón .card de arriba para las demás) -->
+
+  <!-- Contact (ejemplo mínimo) -->
+  <section id="contact" style="background: linear-gradient(to bottom, #0f1624, #070b14);">
+    <div class="container">
+      <h2>Get Protected — Contact Us</h2>
+      <form style="max-width: 680px; margin: 0 auto; display: grid; gap: 1.6rem;">
+        <input type="text" placeholder="Full Name" required style="padding:1.2rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:white; font-size:1.1rem;">
+        <input type="email" placeholder="Email Address" required style="padding:1.2rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:white; font-size:1.1rem;">
+        <input type="tel" placeholder="Phone Number" required style="padding:1.2rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:white; font-size:1.1rem;">
+        <textarea rows="5" placeholder="Tell us about your security needs..." required style="padding:1.2rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:white; font-size:1.1rem; resize:vertical;"></textarea>
+        <button type="submit" class="btn-primary" style="font-size:1.2rem;">Send Secure Message</button>
+      </form>
+
+      <p style="text-align:center; margin-top:3rem; font-size:1.2rem; opacity:0.9;">
+        <strong>Phone:</strong> (201) 312-3509  •  <strong>Email:</strong> info@simosecurity.com
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Simo Security & Consulting LLC — Licensed & Insured in New York State</p>
+      <p style="margin-top:0.8rem; opacity:0.75;">Owner: Athier Simo</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
