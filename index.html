@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Simo Security & Consulting LLC — Elite Protection in NYC</title>
   <meta name="description" content="Professional security, executive protection, consulting & secure transportation for nightlife, events & VIPs in New York City."/>
-  
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
     :root {
@@ -205,7 +209,6 @@
 
     .external::after { content: '↗'; font-size: 1.1rem; }
 
-    /* Gallery */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -230,7 +233,6 @@
 
     .gallery-item:hover img { transform: scale(1.12); }
 
-    /* Testimonials */
     .testimonial {
       background: var(--glass);
       border: 1px solid var(--border);
@@ -258,7 +260,18 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(7,11,20,0.98); backdrop-filter: blur(16px); padding: 2.5rem 1.5rem; border-bottom: 1px solid var(--border); }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(7,11,20,0.98);
+        backdrop-filter: blur(16px);
+        padding: 2.5rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
       .nav-links.active { display: flex; }
       .menu-toggle { display: block; }
       h2 { font-size: 3.4rem; }
@@ -269,21 +282,20 @@
 <body>
 
   <!-- Hero con video dinámico -->
-  <section id="hero">
+  <section id="hero" data-aos="fade">
     <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=90">
       <source src="https://assets.mixkit.co/videos/preview/mixkit-city-traffic-at-night-458-large.mp4" type="video/mp4">
-      Tu navegador no soporta video de fondo.
     </video>
 
-    <div class="hero-content">
+    <div class="hero-content" data-aos="fade-up" data-aos-delay="300">
       <h1 class="hero-title">Elite Protection.<br>Absolute Discretion.</h1>
       <p class="hero-subtitle">High-end security • Executive protection • Consulting • Secure transportation for nightlife, events, VIPs & corporations in New York City.</p>
-      <a href="#contact" class="btn-primary">Request Confidential Quote</a>
+      <a href="#contact" class="btn-primary" data-aos="zoom-in" data-aos-delay="600">Request Confidential Quote</a>
     </div>
   </section>
 
   <!-- Navbar -->
-  <header>
+  <header data-aos="fade-down" data-aos-duration="800">
     <div class="container">
       <nav>
         <div class="logo">Simo Security</div>
@@ -306,14 +318,14 @@
   <!-- Services -->
   <section id="services">
     <div class="container">
-      <h2>Core Protection Services</h2>
+      <h2 data-aos="fade-up">Core Protection Services</h2>
       <div class="grid">
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
           <h3>Nightlife & Venue Security</h3>
           <p>Access control, crowd dynamics, VIP gating and real-time incident response for Manhattan & Brooklyn's premier clubs and lounges.</p>
           <a href="https://example.com/nightlife-security" target="_blank" rel="noopener" class="external">View Case Studies →</a>
         </div>
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
           <h3>Private Events & High-Profile Gatherings</h3>
           <p>Bespoke security for weddings, launches, after-parties, rooftops and ultra-exclusive NYC functions.</p>
           <a href="https://example.com/private-events" target="_blank" rel="noopener" class="external">See Recent Events →</a>
@@ -325,19 +337,19 @@
   <!-- Executive Protection -->
   <section id="executive" style="background: linear-gradient(to bottom, #0f1624, #070b14);">
     <div class="container">
-      <h2>Executive Protection Services</h2>
+      <h2 data-aos="fade-up">Executive Protection Services</h2>
       <div class="grid">
-        <div class="card">
+        <div class="card" data-aos="fade-right" data-aos-delay="100">
           <h3>Close Protection & Bodyguarding</h3>
           <p>Discreet, highly trained executive protection for CEOs, celebrities, high-net-worth individuals, and dignitaries in New York City.</p>
           <a href="https://example.com/close-protection" target="_blank" class="external">Learn More →</a>
         </div>
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
           <h3>Travel & Advance Security</h3>
           <p>Secure travel planning, route reconnaissance, hotel sweeps, and 24/7 close protection details.</p>
           <a href="https://example.com/travel-security" target="_blank" class="external">Learn More →</a>
         </div>
-        <div class="card">
+        <div class="card" data-aos="fade-left" data-aos-delay="300">
           <h3>Threat Assessment & Risk Management</h3>
           <p>Personalized threat evaluations, advance security surveys, and proactive strategies.</p>
           <a href="https://example.com/threat-assessment" target="_blank" class="external">Learn More →</a>
@@ -349,19 +361,19 @@
   <!-- Consulting -->
   <section id="consulting">
     <div class="container">
-      <h2>Security Consulting</h2>
+      <h2 data-aos="fade-up">Security Consulting</h2>
       <div class="grid">
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-delay="100">
           <h3>Venue Risk Assessments & Audits</h3>
           <p>Comprehensive evaluations of nightclubs, lounges, and event spaces to identify vulnerabilities and recommend upgrades.</p>
           <a href="https://example.com/venue-audits" target="_blank" class="external">Details →</a>
         </div>
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-delay="200">
           <h3>Emergency & Crowd Management Plans</h3>
           <p>Custom safety protocols, evacuation strategies, and incident response for high-volume venues.</p>
           <a href="https://example.com/emergency-plans" target="_blank" class="external">Details →</a>
         </div>
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-delay="300">
           <h3>Staff Training & Compliance</h3>
           <p>Professional training on de-escalation, ID verification, alcohol service laws, and emergency procedures.</p>
           <a href="https://example.com/staff-training" target="_blank" class="external">Details →</a>
@@ -373,19 +385,19 @@
   <!-- Transportation -->
   <section id="transport" style="background: linear-gradient(to bottom, #0f1624, #070b14);">
     <div class="container">
-      <h2>Secure Transportation</h2>
+      <h2 data-aos="fade-up">Secure Transportation</h2>
       <div class="grid">
-        <div class="card">
+        <div class="card" data-aos="flip-left" data-aos-delay="100">
           <h3>VIP & Executive Transfers</h3>
           <p>Discreet, secure transportation for celebrities, executives, and high-profile guests across the NYC metro area.</p>
           <a href="https://example.com/vip-transfers" target="_blank" class="external">Learn More →</a>
         </div>
-        <div class="card">
+        <div class="card" data-aos="flip-up" data-aos-delay="200">
           <h3>Protected Nightlife Shuttles</h3>
           <p>Safe group transport for party crews, bar crawls or event attendees — with optional security escort.</p>
           <a href="https://example.com/nightlife-shuttles" target="_blank" class="external">Learn More →</a>
         </div>
-        <div class="card">
+        <div class="card" data-aos="flip-right" data-aos-delay="300">
           <h3>Event Arrival & Departure Coordination</h3>
           <p>Seamless logistics for weddings, premieres, and private functions with full route planning.</p>
           <a href="https://example.com/event-logistics" target="_blank" class="external">Learn More →</a>
@@ -397,15 +409,15 @@
   <!-- Gallery -->
   <section id="gallery">
     <div class="container">
-      <h2>Event Gallery</h2>
-      <p style="text-align:center; margin-bottom:4rem; opacity:0.9; font-size:1.2rem;">
+      <h2 data-aos="fade-up">Event Gallery</h2>
+      <p style="text-align:center; margin-bottom:4rem; opacity:0.9; font-size:1.2rem;" data-aos="fade-up" data-aos-delay="200">
         Real moments from protected events — nightlife, private parties, VIP arrivals in NYC.
       </p>
       <div class="gallery-grid">
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&q=80&w=800" alt="Nightclub security"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=800" alt="Private event"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1505373877291-9030afd392fe?auto=format&fit=crop&q=80&w=800" alt="VIP protection"></div>
-        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800" alt="Executive transport"></div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&q=80&w=800" alt="Nightclub security"></div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=800" alt="Private event"></div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="300"><img src="https://images.unsplash.com/photo-1505373877291-9030afd392fe?auto=format&fit=crop&q=80&w=800" alt="VIP protection"></div>
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="400"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800" alt="Executive transport"></div>
       </div>
     </div>
   </section>
@@ -413,17 +425,17 @@
   <!-- Testimonials -->
   <section id="testimonials" style="background: linear-gradient(to bottom, #0f1624, #070b14);">
     <div class="container">
-      <h2>What Our Clients Say</h2>
+      <h2 data-aos="fade-up">What Our Clients Say</h2>
       <div class="grid">
-        <div class="testimonial">
+        <div class="testimonial" data-aos="fade-right" data-aos-delay="100">
           <p>"Outstanding protection for our rooftop launch in Manhattan. Professional, discreet and highly effective."</p>
           <p style="margin-top:1.5rem; font-weight:600; color:var(--accent);">— Event Planner, Brooklyn</p>
         </div>
-        <div class="testimonial">
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
           <p>"Their executive protection team made our CEO’s NYC visit completely secure and stress-free."</p>
           <p style="margin-top:1.5rem; font-weight:600; color:var(--accent);">— Corporate Executive, Midtown</p>
         </div>
-        <div class="testimonial">
+        <div class="testimonial" data-aos="fade-left" data-aos-delay="300">
           <p>"Best security consulting we’ve had for our lounge. The risk assessment transformed our operations."</p>
           <p style="margin-top:1.5rem; font-weight:600; color:var(--accent);">— Lounge Owner, Lower East Side</p>
         </div>
@@ -434,11 +446,11 @@
   <!-- About -->
   <section id="about">
     <div class="container">
-      <h2>About Simo Security & Consulting LLC</h2>
-      <p style="max-width:900px; margin:0 auto 2.5rem; text-align:center; font-size:1.25rem; opacity:0.92;">
+      <h2 data-aos="fade-up">About Simo Security & Consulting LLC</h2>
+      <p style="max-width:900px; margin:0 auto 2.5rem; text-align:center; font-size:1.25rem; opacity:0.92;" data-aos="fade-up" data-aos-delay="200">
         Based in the New York City metro area, Simo Security & Consulting LLC specializes in high-end private security, executive protection, consulting and secure transportation for the nightlife and events industry. Our licensed professionals deliver discreet, professional protection so you can focus on the experience.
       </p>
-      <p style="text-align:center; font-size:1.3rem; font-weight:600; color:var(--accent); margin-top:2rem;">
+      <p style="text-align:center; font-size:1.3rem; font-weight:600; color:var(--accent); margin-top:2rem;" data-aos="zoom-in" data-aos-delay="400">
         Owner: Athier Simo
       </p>
     </div>
@@ -447,28 +459,39 @@
   <!-- Contact -->
   <section id="contact" style="background: linear-gradient(to bottom, #0f1624, #070b14);">
     <div class="container">
-      <h2>Get Protected — Contact Us</h2>
-      <form style="max-width:680px; margin:0 auto; display:grid; gap:1.8rem;">
+      <h2 data-aos="fade-up">Get Protected — Contact Us</h2>
+      <form style="max-width:680px; margin:0 auto; display:grid; gap:1.8rem;" data-aos="fade-up" data-aos-delay="200">
         <input type="text" placeholder="Full Name" required style="padding:1.3rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:white; font-size:1.1rem;">
         <input type="email" placeholder="Email Address" required style="padding:1.3rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:white; font-size:1.1rem;">
         <input type="tel" placeholder="Phone Number" required style="padding:1.3rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:white; font-size:1.1rem;">
         <textarea rows="6" placeholder="Tell us about your venue, event, executive protection, consulting or transportation needs in NYC..." required style="padding:1.3rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,0.05); color:white; font-size:1.1rem; resize:vertical;"></textarea>
         <button type="submit" class="btn-primary" style="font-size:1.2rem;">Send Secure Message</button>
       </form>
-      <p style="text-align:center; margin-top:3.5rem; font-size:1.25rem; opacity:0.9;">
+      <p style="text-align:center; margin-top:3.5rem; font-size:1.25rem; opacity:0.9;" data-aos="fade-up" data-aos-delay="400">
         <strong>Phone:</strong> (201) 312-3509  •  <strong>Email:</strong> info@simosecurity.com
       </p>
     </div>
   </section>
 
-  <footer>
+  <footer data-aos="fade-up">
     <div class="container">
       <p>© 2026 Simo Security & Consulting LLC — Licensed & Insured in New York State</p>
       <p style="margin-top:1rem; opacity:0.75;">Owner: Athier Simo • New York City Metro Area</p>
     </div>
   </footer>
 
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    AOS.init({
+      duration: 800,          // duración de la animación en ms
+      once: true,             // anima solo una vez
+      easing: 'ease-out-cubic',
+      offset: 120,            // distancia antes de activar la animación
+      anchorPlacement: 'top-bottom'
+    });
+
+    // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
