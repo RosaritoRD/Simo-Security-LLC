@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simo Security LLC - Professional Security for NYC Nightlife & Private Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f1117;
+            --text: #e2e8f0;
+            --accent: #3b82f6;
+            --accent-dark: #2563eb;
+            --card: #1e293b;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            background: rgba(15, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=80') center/cover no-repeat;
+            text-align: center;
+            padding: 8rem 1rem 4rem;
+        }
+
+        #hero h1 {
+            font-size: clamp(2.8rem, 8vw, 5.5rem);
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+        }
+
+        #hero p {
+            font-size: 1.3rem;
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(59,130,246,0.3);
+        }
+
+        .btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(59,130,246,0.45);
+        }
+
+        section {
+            padding: 7rem 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: white;
+        }
+
+        .services-grid, .extra-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #1e293b;
+            color: white;
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.25);
+        }
+
+        footer {
+            background: #0a0c12;
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg);
+                padding: 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            #hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Simo Security</div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#consulting">Consulting</a></li>
+                    <li><a href="#transport">Secure Transport</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle" id="menuToggle">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Security You Can Trust in NYC</h1>
+            <p>Professional, discreet protection for nightclubs, lounges, private parties, VIP events, and exclusive venues across Manhattan, Brooklyn, Queens, and the entire NYC metro area.</p>
+            <a href="#contact" class="btn">Get a Free Quote Today</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Our Core Services</h2>
+            <div class="services-grid">
+                <div class="card">
+                    <h3>Nightclub & Lounge Security</h3>
+                    <p>Access control, crowd management, VIP entry, bottle service protection, and incident prevention for the hottest spots in Manhattan and Brooklyn nightlife.</p>
+                </div>
+                <div class="card">
+                    <h3>Private Events & Parties</h3>
+                    <p>Custom security for birthdays, weddings, corporate parties, after-parties, rooftop events, and exclusive gatherings in NYC lofts, penthouses, and venues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="consulting" style="background: #11151f;">
+        <div class="container">
+            <h2>Security Consulting</h2>
+            <div class="extra-services-grid">
+                <div class="card">
+                    <h3>Venue Risk Assessments & Audits</h3>
+                    <p>Comprehensive evaluations of nightclubs, lounges, and event spaces to identify vulnerabilities and recommend proven security upgrades tailored to NYC regulations and nightlife risks.</p>
+                </div>
+                <div class="card">
+                    <h3>Emergency & Crowd Management Plans</h3>
+                    <p>Custom safety protocols, evacuation strategies, and incident response plans designed for high-volume venues and exclusive private events.</p>
+                </div>
+                <div class="card">
+                    <h3>Staff Training & Compliance</h3>
+                    <p>Professional training for door staff, bartenders, and venue personnel on conflict de-escalation, ID verification, alcohol service laws, and emergency procedures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="transport">
+        <div class="container">
+            <h2>Secure Transportation</h2>
+            <div class="extra-services-grid">
+                <div class="card">
+                    <h3>VIP & Executive Transfers</h3>
+                    <p>Discreet, secure transportation for celebrities, artists, executives, and high-profile guests to and from events, clubs, airports, and hotels across the NYC metro area.</p>
+                </div>
+                <div class="card">
+                    <h3>Protected Nightlife Shuttles</h3>
+                    <p>Safe group transport for party crews, event attendees, or bar crawls — with professional drivers and optional security escort for late-night returns.</p>
+                </div>
+                <div class="card">
+                    <h3>Event Arrival & Departure Coordination</h3>
+                    <p>Seamless logistics for weddings, premieres, and private functions — ensuring secure, on-time arrivals and departures with full route planning and real-time monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" style="background: #0d111a;">
+        <div class="container">
+            <h2>About Simo Security LLC</h2>
+            <p style="max-width: 800px; margin: 0 auto 1.5rem; text-align: center; font-size: 1.2rem;">
+                Based in the heart of the New York City metro area, Simo Security LLC specializes in high-end private security for the nightlife and events industry. Our licensed, vetted professionals bring years of experience protecting clubs, lounges, celebrities, and exclusive events across the five boroughs. We deliver discreet, professional protection so you can focus on the experience.
+            </p>
+            <p style="text-align: center; font-size: 1.1rem; opacity: 0.9;">
+                Owner: Athier Simo
+            </p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us Today</h2>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <textarea rows="6" placeholder="Tell us about your venue, event, security consulting, or transportation needs in NYC..." required></textarea>
+                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+            </form>
+            <p style="text-align: center; margin-top: 2rem;">
+                Phone: (201) 312-3509<br>
+                Email: info@simosecurity.com
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Simo Security LLC – New York City Metro Area</p>
+        <p>Licensed & Insured in New York State | Owner: Athier Simo | (201) 312-3509</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
