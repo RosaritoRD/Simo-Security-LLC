@@ -1,305 +1,166 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simo Security & Consulting LLC — Elite Protection in NYC</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0a0e17;
-            --surface: #111827;
-            --text: #e2e8f0;
-            --accent: #60a5fa;
-            --accent-glow: rgba(96, 165, 250, 0.25);
-            --glass: rgba(17, 24, 39, 0.6);
-            --border: rgba(55, 65, 81, 0.5);
+{
+  "company": {
+    "name": "Simo Security & Consulting LLC",
+    "shortName": "Simo Security",
+    "owner": "Athier Simo",
+    "phone": "(201) 312-3509",
+    "email": "info@simosecurity.com",
+    "location": "New York City Metro Area",
+    "licensed": "Licensed & Insured in New York State",
+    "year": 2026
+  },
+  "navigation": [
+    { "label": "Home", "href": "#hero", "external": false },
+    { "label": "Services", "href": "#services", "external": false },
+    { "label": "Executive Protection", "href": "#executive", "external": false },
+    { "label": "Consulting", "href": "#consulting", "external": false },
+    { "label": "Transportation", "href": "#transport", "external": false },
+    { "label": "Gallery", "href": "#gallery", "external": false },
+    { "label": "Testimonials", "href": "#testimonials", "external": false },
+    { "label": "About", "href": "#about", "external": false },
+    { "label": "Contact", "href": "#contact", "external": false }
+  ],
+  "hero": {
+    "title": "Elite Protection. Absolute Discretion.",
+    "subtitle": "High-end security, executive protection, consulting & secure transport for NYC's most demanding clients — nightlife, events, VIPs & corporations.",
+    "cta": {
+      "text": "Request Confidential Quote",
+      "href": "#contact"
+    },
+    "background": {
+      "type": "video",
+      "src": "https://assets.mixkit.co/videos/preview/mixkit-city-traffic-at-night-458-large.mp4",
+      "fallbackImage": "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=90&w=2400",
+      "overlay": "rgba(0,0,0,0.75)",
+      "videoOptions": {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "playsinline": true
+      }
+    }
+  },
+  "sections": {
+    "services": {
+      "title": "Core Protection Services",
+      "cards": [
+        {
+          "title": "Nightlife & Venue Security",
+          "description": "Access control, crowd dynamics, VIP gating and real-time incident response for Manhattan & Brooklyn's premier clubs and lounges.",
+          "externalLink": "https://example.com/nightlife-security-details",
+          "externalLinkText": "Learn More →"
+        },
+        {
+          "title": "Private Events & High-Profile Gatherings",
+          "description": "Bespoke security for weddings, launches, after-parties, rooftops and ultra-exclusive NYC functions.",
+          "externalLink": "https://example.com/private-events-security",
+          "externalLinkText": "Learn More →"
         }
-
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
+      ]
+    },
+    "executiveProtection": {
+      "title": "Executive Protection Services",
+      "cards": [
+        {
+          "title": "Close Protection & Bodyguarding",
+          "description": "Discreet, highly trained executive protection for CEOs, celebrities, high-net-worth individuals, and dignitaries in New York City."
+        },
+        {
+          "title": "Travel & Advance Security",
+          "description": "Secure travel planning, route reconnaissance, hotel sweeps, and 24/7 close protection details."
+        },
+        {
+          "title": "Threat Assessment & Risk Management",
+          "description": "Personalized threat evaluations, advance security surveys, and proactive strategies."
         }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.025em; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
-
-        /* Navbar - Glass + Blur */
-        header {
-            background: rgba(10, 14, 23, 0.7);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
+      ]
+    },
+    "consulting": {
+      "title": "Security Consulting",
+      "cards": [
+        {
+          "title": "Venue Risk Assessments & Audits",
+          "description": "Comprehensive evaluations of nightclubs, lounges, and event spaces."
+        },
+        {
+          "title": "Emergency & Crowd Management Plans",
+          "description": "Custom safety protocols, evacuation strategies, and incident response."
+        },
+        {
+          "title": "Staff Training & Compliance",
+          "description": "Training on de-escalation, ID verification, alcohol laws, and emergencies."
         }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 0;
+      ]
+    },
+    "transportation": {
+      "title": "Secure Transportation",
+      "cards": [
+        {
+          "title": "VIP & Executive Transfers",
+          "description": "Discreet, secure transport for celebrities, executives, and high-profile guests across NYC."
+        },
+        {
+          "title": "Protected Nightlife Shuttles",
+          "description": "Safe group transport with professional drivers and optional security escort."
+        },
+        {
+          "title": "Event Arrival & Departure Coordination",
+          "description": "Seamless logistics with full route planning and real-time monitoring."
         }
-        .logo {
-            font-size: 1.9rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+      ]
+    },
+    "gallery": {
+      "title": "Event Gallery",
+      "description": "Real moments from the events we've protected in NYC.",
+      "images": [
+        "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800",
+        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800",
+        "https://images.unsplash.com/photo-1505373877291-9030afd392fe?w=800",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800"
+      ]
+    },
+    "testimonials": {
+      "title": "What Our Clients Say",
+      "items": [
+        {
+          "text": "Outstanding protection for our rooftop launch party in Manhattan. Professional and discreet.",
+          "author": "Event Planner, Brooklyn"
+        },
+        {
+          "text": "Their executive protection team made our CEO's NYC visit completely secure.",
+          "author": "Corporate Executive, Midtown"
+        },
+        {
+          "text": "Best security consulting we've had for our lounge. Transformed our operations.",
+          "author": "Lounge Owner, Lower East Side"
         }
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: var(--accent); }
-        .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: white; }
-
-        /* Hero - Glass + Gradient Overlay */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=90&w=2400') center/cover fixed;
-            padding: 10rem 1rem 6rem;
-            position: relative;
-        }
-        #hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 70%, rgba(96,165,250,0.12), transparent 60%);
-            pointer-events: none;
-        }
-        #hero h1 {
-            font-size: clamp(3.5rem, 10vw, 7.5rem);
-            margin-bottom: 1.5rem;
-            line-height: 0.95;
-            background: linear-gradient(90deg, #fff, #e2e8f0, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        #hero p { font-size: 1.4rem; max-width: 800px; margin: 0 auto 3rem; opacity: 0.9; }
-
-        .btn {
-            background: linear-gradient(135deg, #3b82f6, #60a5fa);
-            color: white;
-            padding: 1rem 2.8rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px var(--accent-glow);
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 20px 50px var(--accent-glow);
-        }
-
-        section { padding: 9rem 0; }
-        h2 {
-            font-size: clamp(2.8rem, 6vw, 5rem);
-            text-align: center;
-            margin-bottom: 5rem;
-            background: linear-gradient(90deg, #60a5fa, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Glassmorphism Cards */
-        .card {
-            background: var(--glass);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid var(--border);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        }
-        .card:hover {
-            transform: translateY(-16px) scale(1.03);
-            border-color: var(--accent);
-            box-shadow: 0 25px 60px var(--accent-glow);
-        }
-        .card h3 { color: var(--accent); font-size: 1.8rem; margin-bottom: 1.2rem; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
-
-        /* Gallery - Modern Hover */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 1.25rem;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            transition: all 0.5s ease;
-        }
-        .gallery-item:hover { transform: scale(1.06); box-shadow: 0 20px 60px var(--accent-glow); }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .gallery-item:hover img { transform: scale(1.15); }
-
-        /* Testimonials */
-        .testimonial {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
-            position: relative;
-            text-align: center;
-        }
-        .testimonial::before {
-            content: '“';
-            font-size: 8rem;
-            position: absolute;
-            top: -2rem;
-            left: 1.5rem;
-            opacity: 0.15;
-            line-height: 1;
-        }
-
-        footer {
-            background: #05070f;
-            text-align: center;
-            padding: 4rem 1rem;
-            border-top: 1px solid var(--border);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { 
-                display: none; 
-                flex-direction: column; 
-                position: absolute; 
-                top: 100%; 
-                left: 0; 
-                right: 0; 
-                background: rgba(10,14,23,0.95); 
-                backdrop-filter: blur(16px); 
-                padding: 2rem; 
-                border-bottom: 1px solid var(--border);
-            }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
-            h2 { font-size: 3rem; }
-            #hero h1 { font-size: 4.5rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Simo Security</div>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#executive">Executive Protection</a></li>
-                    <li><a href="#consulting">Consulting</a></li>
-                    <li><a href="#transport">Transport</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="menu-toggle" id="menuToggle">☰</div>
-            </nav>
-        </div>
-    </header>
-
-    <section id="hero">
-        <div class="container">
-            <h1>Elite Protection.<br>Absolute Discretion.</h1>
-            <p>High-end security, executive protection, consulting & secure transport for NYC's most demanding clients — nightlife, events, VIPs & corporations.</p>
-            <a href="#contact" class="btn">Request Confidential Quote</a>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="container">
-            <h2>Core Protection Services</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Nightlife & Venue Security</h3>
-                    <p>Access control, crowd dynamics, VIP gating and real-time incident response for Manhattan & Brooklyn's premier clubs and lounges.</p>
-                </div>
-                <div class="card">
-                    <h3>Private Events & High-Profile Gatherings</h3>
-                    <p>Bespoke security for weddings, launches, after-parties, rooftops and ultra-exclusive NYC functions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mantengo las otras secciones como executive, consulting, transport, gallery, testimonials, about y contact del código anterior, pero con la nueva clase .card glassmorphism aplicada -->
-
-    <!-- Por brevedad, copia las secciones anteriores y reemplaza <div class="card"> con el nuevo estilo glass. -->
-
-    <section id="contact">
-        <div class="container">
-            <h2>Get Protected — Contact Us</h2>
-            <form class="max-w-2xl mx-auto grid gap-6">
-                <input type="text" placeholder="Name" required class="bg-[rgba(17,24,39,0.6)] backdrop-blur-lg border border-[rgba(55,65,81,0.5)] rounded-xl p-4 text-white focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow)] outline-none transition">
-                <input type="email" placeholder="Email" required class="bg-[rgba(17,24,39,0.6)] backdrop-blur-lg border border-[rgba(55,65,81,0.5)] rounded-xl p-4 text-white focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow)] outline-none transition">
-                <input type="tel" placeholder="Phone" required class="bg-[rgba(17,24,39,0.6)] backdrop-blur-lg border border-[rgba(55,65,81,0.5)] rounded-xl p-4 text-white focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow)] outline-none transition">
-                <textarea rows="5" placeholder="Your security needs in NYC..." required class="bg-[rgba(17,24,39,0.6)] backdrop-blur-lg border border-[rgba(55,65,81,0.5)] rounded-xl p-4 text-white focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent-glow)] outline-none transition"></textarea>
-                <button type="submit" class="btn text-lg">Submit Securely</button>
-            </form>
-            <p class="text-center mt-8 text-lg">
-                (201) 312-3509  •  info@simosecurity.com
-            </p>
-        </div>
-    </section>
-
-    <footer>
-        <p class="text-sm opacity-70">© 2026 Simo Security & Consulting LLC — Licensed & Insured • New York Metro</p>
-        <p class="text-sm opacity-70 mt-2">Owner: Athier Simo</p>
-    </footer>
-
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-    </script>
-
-</body>
-</html>
+      ]
+    },
+    "about": {
+      "title": "About Simo Security & Consulting LLC",
+      "text": "Based in the New York City metro area, we specialize in high-end private security, executive protection, consulting, and secure transportation for nightlife, events, and VIP clients across the five boroughs.",
+      "owner": "Athier Simo"
+    },
+    "contact": {
+      "title": "Get Protected — Contact Us",
+      "form": {
+        "fields": ["Name", "Email", "Phone", "Message"],
+        "submitText": "Submit Securely"
+      },
+      "info": {
+        "phone": "(201) 312-3509",
+        "email": "info@simosecurity.com"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Simo Security & Consulting LLC — Licensed & Insured • New York Metro",
+    "owner": "Owner: Athier Simo"
+  },
+  "styles": {
+    "theme": "dark",
+    "accentColor": "#60a5fa",
+    "glassEffect": true,
+    "videoBackground": true
+  }
+}
