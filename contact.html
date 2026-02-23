@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Simo Security</title>
+  <meta name="description" content="Request a confidential quote for security, executive protection or consulting services in NYC."/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html" aria-label="Simo Security Home">
+        <div class="logo-icon">SS</div>
+        <div class="logo-text">
+          <strong>Simo Security</strong>
+          <small>Security & Consulting LLC — NYC</small>
+        </div>
+      </a>
+
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="executive-protection.html">Executive Protection</a>
+        <a href="consulting.html">Consulting</a>
+        <a href="transportation.html">Transportation</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+
+      <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+
+  <div class="mobile" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="executive-protection.html">Executive Protection</a>
+    <a href="consulting.html">Consulting</a>
+    <a href="transportation.html">Transportation</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a class="active" href="contact.html">Contact</a>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h1 class="page-title">Request Confidential Quote</h1>
+    <p class="page-sub">
+      Tell us about your venue, event, executive movement, or consulting needs.  
+      We respond quickly and discreetly.
+    </p>
+
+    <form class="form" action="mailto:athierasimo@gmail.com" method="POST" enctype="text/plain">
+      <input class="field" type="text" name="Full Name" placeholder="Full Name" required>
+      <input class="field" type="email" name="Email" placeholder="Email Address" required>
+      <input class="field" type="tel" name="Phone" placeholder="Phone Number" required>
+
+      <select class="field" name="Service Type" required>
+        <option value="">Select Service Type</option>
+        <option>Nightlife & Venue Security</option>
+        <option>Private Event Security</option>
+        <option>Executive Protection</option>
+        <option>Consulting</option>
+        <option>Transportation</option>
+      </select>
+
+      <textarea class="field" name="Message" rows="6"
+        placeholder="Event date, location, estimated attendance, coverage hours, or any special security considerations..."
+        required></textarea>
+
+      <button class="btn primary" type="submit">Send Secure Message</button>
+    </form>
+
+    <div style="margin-top:30px;">
+      <h3 style="margin-bottom:10px;">Direct Contact</h3>
+      <p><strong>Phone:</strong> <a href="tel:+12013123509">(201) 312-3509</a></p>
+      <p><strong>Email:</strong> <a href="mailto:athierasimo@gmail.com">athierasimo@gmail.com</a></p>
+      <p style="margin-top:10px; opacity:0.8;">NYC Metro Area — Licensed & Insured</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Simo Security & Consulting LLC — NYC Metro Area</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
