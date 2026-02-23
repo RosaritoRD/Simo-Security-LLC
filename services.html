@@ -2,34 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Services — Simo Security</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services - Simo Security</title>
+  <meta name="description" content="Security services for nightlife, private events, executive clients and corporate operations in NYC." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <!-- HEADER (igual en todas) -->
   <header>
     <div class="container">
       <div class="nav">
-        <a class="brand" href="index.html">
-          <div class="mark" aria-hidden="true"></div>
-          <span>Simo Security</span>
+        <a class="brand" href="index.html" aria-label="Simo Security Home">
+          <div class="logo-icon">SS</div>
+          <div class="logo-text">
+            <strong>Simo Security</strong>
+            <small>Security and Consulting LLC - NYC</small>
+          </div>
         </a>
-        <nav class="links">
-          <a href="services.html">Services</a>
+        <nav class="links" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a class="active" href="services.html">Services</a>
           <a href="executive-protection.html">Executive Protection</a>
           <a href="consulting.html">Consulting</a>
           <a href="transportation.html">Transportation</a>
           <a href="gallery.html">Gallery</a>
+          <a href="testimonials.html">Testimonials</a>
           <a href="about.html">About</a>
-          <a href="contact.html" class="btn primary">Request Quote</a>
+          <a class="btn primary" href="contact.html">Request Quote</a>
         </nav>
-        <button class="menu" id="menuBtn" aria-label="Open Menu" aria-expanded="false">☰</button>
+        <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
       </div>
     </div>
-    <div class="mobile" id="mobileNav">
-      <a href="services.html">Services</a>
+    <div class="mobile" id="mobileNav" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a class="active" href="services.html">Services</a>
       <a href="executive-protection.html">Executive Protection</a>
       <a href="consulting.html">Consulting</a>
       <a href="transportation.html">Transportation</a>
@@ -42,62 +47,114 @@
 
   <section class="section">
     <div class="container">
+      <div class="page-hero-media">
+        <img class="page-hero-image" src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1800&q=80" alt="New York skyline at night" loading="lazy" />
+      </div>
       <h1 class="page-title">Services</h1>
       <p class="page-sub">Professional coverage options tailored to NYC venues, private clients and corporate needs.</p>
 
       <div class="grid">
-        <div class="card">
-          <h3>Nightlife & Venue Security</h3>
-          <p>Door teams, access control, VIP entry, conflict prevention and incident response.</p>
-        </div>
-        <div class="card">
+        <article class="card">
+          <h3>Nightlife and Venue Security</h3>
+          <p>Door teams, access control, VIP entry and incident prevention for high-volume nightlife operations.</p>
+          <div class="badges"><span class="badge">Access</span><span class="badge">VIP</span><span class="badge">Crowd</span></div>
+        </article>
+        <article class="card">
           <h3>Private Events</h3>
-          <p>Weddings, brand launches, after-parties, rooftops and exclusive gatherings.</p>
-        </div>
-        <div class="card">
-          <h3>Residential & Property Security</h3>
-          <p>On-site presence, patrols, visitor management and reporting.</p>
-        </div>
-        <div class="card">
-          <h3>Corporate & Asset Protection</h3>
-          <p>Operational planning, SOPs, staffing and controlled-access solutions.</p>
-        </div>
+          <p>Coverage for weddings, launches, rooftops and private celebrations with discreet guest flow control.</p>
+          <div class="badges"><span class="badge">Events</span><span class="badge">Guest Flow</span><span class="badge">Discreet</span></div>
+        </article>
+        <article class="card">
+          <h3>Residential and Property Security</h3>
+          <p>On-site presence, patrols, visitor management and incident reporting for residential properties.</p>
+          <div class="badges"><span class="badge">Patrol</span><span class="badge">Visitors</span><span class="badge">Reports</span></div>
+        </article>
+        <article class="card">
+          <h3>Corporate and Asset Protection</h3>
+          <p>Operational planning, staffing and controlled access programs for offices and business sites.</p>
+          <div class="badges"><span class="badge">SOP</span><span class="badge">Staffing</span><span class="badge">Control</span></div>
+        </article>
       </div>
 
-      <div style="margin-top:18px">
-        <a class="btn primary" href="contact.html">Request Quote</a>
-      </div>
-      <section class="lead" id="request-quote">
-  <div class="lead-card">
-    <div class="lead-left">
-      <h2>Get a Quote</h2>
-      <p>Tell us what you need and we’ll respond with the best coverage option for your location and timeframe.</p>
-
-      <div class="lead-badges">
-        <span class="badge">NYC Metro</span>
-        <span class="badge">Fast Deployment</span>
-        <span class="badge">Professional Staffing</span>
-      </div>
+      <section class="lead">
+        <div class="lead-card">
+          <div>
+            <h2>Need Immediate Coverage?</h2>
+            <p class="page-sub">Tell us your date, location and expected attendance. We will respond with the right staffing option.</p>
+          </div>
+          <div class="lead-right">
+            <button class="btn primary" id="openQuote" type="button">Open Quote Form</button>
+            <a class="btn" href="https://wa.me/12013123509" target="_blank" rel="noopener">WhatsApp</a>
+            <p class="tiny-note">Or email: <a href="mailto:athierasimo@gmail.com">athierasimo@gmail.com</a></p>
+          </div>
+        </div>
+      </section>
     </div>
+  </section>
 
-    <div class="lead-right">
-      <a class="btn" href="https://wa.me/19297123126?text=Hi%20Simo%20Security%2C%20I%27d%20like%20to%20request%20a%20quote."
-   target="_blank" rel="noopener">
-  Message on WhatsApp
-</a>
-      <p class="tiny-note">Or email: <a href="mailto:athierasimo@gmail.com">athierasimo@gmail.com</a></p>
+  <div class="modal-backdrop" id="quoteModal" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Request a Quote</h3>
+        <button class="icon-btn" id="closeQuote" aria-label="Close quote modal" type="button">&#10005;</button>
+      </div>
+      <form class="quote-form" id="quoteForm">
+        <div class="grid2">
+          <label>Full Name <input type="text" name="name" required /></label>
+          <label>Phone <input type="tel" name="phone" required /></label>
+        </div>
+        <label>Email <input type="email" name="email" required /></label>
+        <div class="grid2">
+          <label>
+            Service Type
+            <select name="service" required>
+              <option value="">Select...</option>
+              <option>Nightlife and Venue Security</option>
+              <option>Private Events</option>
+              <option>Residential and Property Security</option>
+              <option>Corporate and Asset Protection</option>
+              <option>Executive Protection</option>
+              <option>Secure Transportation</option>
+              <option>Consulting</option>
+            </select>
+          </label>
+          <label>Date <input type="date" name="date" required /></label>
+        </div>
+        <div class="grid2">
+          <label>Hours Needed <input type="number" min="1" max="24" name="hours" placeholder="e.g. 6" required /></label>
+          <label>Location (NYC) <input type="text" name="location" placeholder="Venue / address / borough" required /></label>
+        </div>
+        <label>Details (optional) <textarea name="details" rows="4" placeholder="Crowd size, VIP movement, entry points, special requirements"></textarea></label>
+        <button class="btn primary full" type="submit">Send Request</button>
+      </form>
     </div>
   </div>
-</section>
+
+  <section class="section faq">
+    <div class="container">
+      <h2 class="page-title">FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" type="button">What areas do you cover?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>NYC and surrounding metro areas. Out-of-area requests are handled by scope and notice.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" type="button">How fast can your team deploy?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Based on staffing and scope, we can often support same-day or next-day requests.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" type="button">What do you need for a quote?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Date, location, service type, hours and any details about VIP movement or crowd profile.</p></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p>© 2026 Simo Security & Consulting LLC — NYC Metro Area</p>
+      <p>&copy; 2026 Simo Security and Consulting LLC - NYC Metro Area</p>
     </div>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>

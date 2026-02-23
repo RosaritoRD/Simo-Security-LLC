@@ -2,42 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery — Simo Security</title>
-  <meta name="description" content="Gallery of Simo Security operations and coverage."/>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery - Simo Security</title>
+  <meta name="description" content="Gallery of security operations, event coverage and movement coordination by Simo Security." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="nav">
-        <a class="brand" href="index.html">
-          <div class="mark" aria-hidden="true"></div>
-          <span>Simo Security</span>
+        <a class="brand" href="index.html" aria-label="Simo Security Home">
+          <div class="logo-icon">SS</div>
+          <div class="logo-text">
+            <strong>Simo Security</strong>
+            <small>Security and Consulting LLC - NYC</small>
+          </div>
         </a>
-
-        <nav class="links" aria-label="Primary">
+        <nav class="links" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
           <a href="services.html">Services</a>
           <a href="executive-protection.html">Executive Protection</a>
           <a href="consulting.html">Consulting</a>
           <a href="transportation.html">Transportation</a>
-          <a href="gallery.html">Gallery</a>
+          <a class="active" href="gallery.html">Gallery</a>
+          <a href="testimonials.html">Testimonials</a>
           <a href="about.html">About</a>
-          <a href="contact.html" class="btn primary">Request Quote</a>
+          <a class="btn primary" href="contact.html">Request Quote</a>
         </nav>
-
-        <button class="menu" id="menuBtn" aria-label="Open Menu" aria-expanded="false">☰</button>
+        <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
       </div>
     </div>
-
-    <div class="mobile" id="mobileNav" aria-label="Mobile Menu">
+    <div class="mobile" id="mobileNav" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="executive-protection.html">Executive Protection</a>
       <a href="consulting.html">Consulting</a>
       <a href="transportation.html">Transportation</a>
-      <a href="gallery.html">Gallery</a>
+      <a class="active" href="gallery.html">Gallery</a>
       <a href="testimonials.html">Testimonials</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -47,28 +48,26 @@
   <section class="section">
     <div class="container">
       <h1 class="page-title">Gallery</h1>
-      <p class="page-sub">Replace these placeholders with real images (team, vehicles, events, venues).</p>
-
-      <div class="grid">
-        <div class="card" style="min-height:220px">
-          <h3>Executive Coverage</h3>
-          <p>VIP movement, arrivals and transitions.</p>
-        </div>
-        <div class="card" style="min-height:220px">
-          <h3>Nightlife Security</h3>
-          <p>Access control and crowd operations.</p>
-        </div>
-        <div class="card" style="min-height:220px">
-          <h3>Secure Transport</h3>
-          <p>Vehicle coordination and route strategy.</p>
-        </div>
-        <div class="card" style="min-height:220px">
-          <h3>Private Events</h3>
-          <p>Perimeter and guest entry control.</p>
-        </div>
+      <p class="page-sub">Examples of operation contexts and service environments.</p>
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1400&q=80" alt="Event crowd management setup" loading="lazy" />
+          <figcaption>Nightlife and event access control operations.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&w=1400&q=80" alt="Professional executive movement support" loading="lazy" />
+          <figcaption>Executive movement and arrival coordination.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1400&q=80" alt="Urban venue perimeter support" loading="lazy" />
+          <figcaption>Perimeter and guest flow strategy at urban venues.</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80" alt="Secure route and transportation planning" loading="lazy" />
+          <figcaption>Secure transportation planning and route control.</figcaption>
+        </figure>
       </div>
-
-      <div style="margin-top:18px">
+      <div class="actions">
         <a class="btn primary" href="contact.html">Book Coverage</a>
       </div>
     </div>
@@ -76,10 +75,9 @@
 
   <footer>
     <div class="container">
-      <p>© 2026 Simo Security & Consulting LLC — NYC Metro Area</p>
+      <p>&copy; 2026 Simo Security and Consulting LLC - NYC Metro Area</p>
     </div>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
