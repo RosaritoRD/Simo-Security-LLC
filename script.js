@@ -1,148 +1,141 @@
-const menuBtn = document.getElementById("menuBtn");
-const mobileNav = document.getElementById("mobileNav");
+/* ════════════════════════════════════
+   SIMO SECURITY — Main Script
+   ════════════════════════════════════ */
 
-if (menuBtn && mobileNav) {
-  menuBtn.addEventListener("click", () => {
-    const open = mobileNav.classList.toggle("open");
-    menuBtn.textContent = open ? "✕" : "☰";
-    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-  });
+(function () {
+  'use strict';
 
-  mobileNav.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => {
-      mobileNav.classList.remove("open");
-      menuBtn.textContent = "☰";
-      menuBtn.setAttribute("aria-expanded", "false");
+  /* ── Hamburger / Mobile Nav ── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
     });
-  });
-}
-  // Modal
-  const modal = document.getElementById("quoteModal");
-  const openBtn = document.getElementById("openQuote");
-  const closeBtn = document.getElementById("closeQuote");
-  const form = document.getElementById("quoteForm");
 
-  function openModal(){
-    modal.classList.add("show");
-    modal.setAttribute("aria-hidden", "false");
-  }
-  function closeModal(){
-    modal.classList.remove("show");
-    modal.setAttribute("aria-hidden", "true");
+    mobileNav.querySelectorAll('.mob-link, .mob-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
-  openBtn?.addEventListener("click", openModal);
-  closeBtn?.addEventListener("click", closeModal);
-  modal?.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+  /* ── Header scroll state ── */
+  const header = document.getElementById('header');
+  if (header) {
+    const onScroll = () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 
-  // Submit via email (no backend)
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    const payload = Object.fromEntries(data.entries());
+  /* ── Scroll-reveal animations ── */
+  const animEls = document.querySelectorAll('[data-animate]');
+  if (animEls.length) {
+    // Stagger children inside grids
+    document.querySelectorAll('.services-grid, .why-grid, .testi-grid').forEach(grid => {
+      grid.querySelectorAll('[data-animate]').forEach((el, i) => {
+        el.dataset.delay = i * 110;
+      });
+    });
 
-    const subject = encodeURIComponent("Simo Security — Quote Request");
-    const body = encodeURIComponent(
-`Name: ${payload.name}
-Phone: ${payload.phone}
-Email: ${payload.email}
-Service: ${payload.service}
-Date: ${payload.date}
-Hours: ${payload.hours}
-Location: ${payload.location}
-
-Details:
-${payload.details || ""}`
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay || 0, 10);
+            setTimeout(() => entry.target.classList.add('visible'), delay);
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
     );
 
-    window.location.href = `mailto:athierasimo@gmail.com?subject=${subject}&body=${body}`;
-    closeModal();
-    form.reset();
-  });
+    animEls.forEach(el => io.observe(el));
+  }
 
-  // FAQ accordion (only one open)
-  document.querySelectorAll(".faq-item").forEach((item) => {
-    const btn = item.querySelector(".faq-q");
-    btn.addEventListener("click", () => {
-      const isOpen = item.classList.contains("open");
+  /* ── Active nav link on scroll ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 
-      document.querySelectorAll(".faq-item").forEach(i => {
-        i.classList.remove("open");
-        const b = i.querySelector(".faq-q");
-        b?.setAttribute("aria-expanded", "false");
-      });
+  if (sections.length && navLinks.length) {
+    const sectionObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navLinks.forEach(link => {
+              link.classList.toggle('active-link', link.getAttribute('href') === `#${id}`);
+            });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    sections.forEach(s => sectionObs.observe(s));
+  }
 
-      if(!isOpen){
-        item.classList.add("open");
-        btn.setAttribute("aria-expanded", "true");
+  /* ── Contact form ── */
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const name = form.querySelector('[name="name"]').value.trim();
+      const email = form.querySelector('[name="email"]').value.trim();
+      const msg = form.querySelector('[name="message"]').value.trim();
+
+      if (!name || !email || !msg) {
+        showToast('Please fill in all required fields.', 'error');
+        return;
       }
+      const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRx.test(email)) {
+        showToast('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      const orig = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = orig;
+        form.reset();
+        showToast('Message sent! We\'ll be in touch shortly.', 'success');
+      }, 1800);
     });
   }
-const modal = document.getElementById("quoteModal");
-const openBtn = document.getElementById("openQuote");
-const closeBtn = document.getElementById("closeQuote");
-const form = document.getElementById("quoteForm");
 
-function openModal(){
-  if (!modal) return;
-  modal.classList.add("show");
-  modal.setAttribute("aria-hidden", "false");
-}
-function closeModal(){
-  if (!modal) return;
-  modal.classList.remove("show");
-  modal.setAttribute("aria-hidden", "true");
-}
+  /* ── Toast ── */
+  function showToast(msg, type) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.className = 'toast ' + (type || 'success') + ' show';
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), 4200);
+  }
 
-openBtn?.addEventListener("click", openModal);
-closeBtn?.addEventListener("click", closeModal);
-
-modal?.addEventListener("click", (e) => {
-  if (e.target === modal) closeModal();
-});
-
-// Submit via email (no backend)
-form?.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const data = new FormData(form);
-  const payload = Object.fromEntries(data.entries());
-
-  const subject = encodeURIComponent("Simo Security — Quote Request");
-
-  const body = encodeURIComponent(
-`Name: ${payload.name}
-Phone: ${payload.phone}
-Email: ${payload.email}
-Service: ${payload.service}
-Date: ${payload.date}
-Hours: ${payload.hours}
-Location: ${payload.location}
-
-Details:
-${payload.details || ""}`
-  );
-
-  window.location.href = `mailto:athierasimo@gmail.com?subject=${subject}&body=${body}`;
-  closeModal();
-  form.reset();
-});
-
-// FAQ accordion (only one open)
-document.querySelectorAll(".faq-item").forEach((item) => {
-  const btn = item.querySelector(".faq-q");
-  btn?.addEventListener("click", () => {
-    const isOpen = item.classList.contains("open");
-
-    document.querySelectorAll(".faq-item").forEach(i => {
-      i.classList.remove("open");
-      const b = i.querySelector(".faq-q");
-      b?.setAttribute("aria-expanded", "false");
+  /* ── Smooth scroll (fallback) ── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const sel = anchor.getAttribute('href');
+      if (sel === '#') return;
+      const target = document.querySelector(sel);
+      if (!target) return;
+      e.preventDefault();
+      const offset = (header ? header.offsetHeight : 0) + 8;
+      window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
     });
-
-    if (!isOpen) {
-      item.classList.add("open");
-      btn.setAttribute("aria-expanded", "true");
-    }
   });
-});
+
+})();

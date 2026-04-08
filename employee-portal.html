@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Portal | Simo Security & Consulting LLC</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .pheader { position: sticky; top: 0; z-index: 100; }
+    .user-chip {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 14px; border-radius: 999px;
+      background: rgba(100,150,255,0.08); border: 1px solid rgba(100,150,255,0.18);
+      font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    }
+    .user-chip .av {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #0d1b2a);
+      display: grid; place-items: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.72rem;
+      color: #8aabff; border: 1px solid rgba(100,150,255,0.25);
+    }
+    /* Employee accent color: blue instead of gold */
+    .emp-accent { color: #7099ff; }
+    .emp-stat-card-icon { background: rgba(100,150,255,0.1); border-color: rgba(100,150,255,0.18); color: #7099ff; }
+    .emp-stat-val { color: #8aabff; }
+
+    .dash-tab-row {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 28px; border-bottom: 1px solid var(--border-sub); padding-bottom: 0;
+    }
+    .dash-tab {
+      padding: 10px 18px; border-radius: 10px 10px 0 0;
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.85rem;
+      color: var(--muted); cursor: pointer; border: none; background: transparent;
+      border-bottom: 2px solid transparent;
+      transition: color var(--trans), border-color var(--trans);
+    }
+    .dash-tab.active { color: #7099ff; border-bottom-color: #7099ff; }
+    .dash-tab:hover:not(.active) { color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Schedule calendar strip */
+    .schedule-strip {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      padding: 20px 22px;
+    }
+    .sched-day {
+      flex: 1; min-width: 110px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border-sub);
+      border-radius: var(--radius); padding: 16px 14px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .sched-day.today { border-color: rgba(100,150,255,0.3); background: rgba(100,150,255,0.05); }
+    .sched-day.off { opacity: 0.5; }
+    .sched-date { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; }
+    .sched-day-name { font-size: 0.76rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; }
+    .sched-shift {
+      font-size: 0.8rem; font-weight: 700; padding: 4px 10px;
+      border-radius: 999px; margin-top: 4px; text-align: center;
+    }
+    .shift-day   { background: rgba(100,150,255,0.12); color: #8aabff; border: 1px solid rgba(100,150,255,0.2); }
+    .shift-night { background: rgba(201,168,76,0.1);   color: var(--gold); border: 1px solid var(--gold-border2); }
+    .shift-off   { background: rgba(255,255,255,0.05); color: var(--dim); border: 1px solid rgba(255,255,255,0.06); }
+
+    .sched-loc { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+
+    /* Report form */
+    .report-form {
+      padding: 24px 22px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .report-form .form-group { margin-bottom: 0; }
+    .report-form input,
+    .report-form select,
+    .report-form textarea {
+      width: 100%; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid var(--border-sub); background: rgba(255,255,255,0.04);
+      color: var(--text); font-family: 'Open Sans', sans-serif; font-size: 0.92rem; outline: none;
+      transition: border-color var(--trans), box-shadow var(--trans);
+    }
+    .report-form input:focus,
+    .report-form select:focus,
+    .report-form textarea:focus {
+      border-color: rgba(100,150,255,0.3);
+      box-shadow: 0 0 0 3px rgba(100,150,255,0.08);
+    }
+    .report-form label {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.81rem; color: var(--muted);
+    }
+    .report-form textarea { resize: vertical; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* Messages */
+    .msg-thread {
+      display: flex; flex-direction: column; gap: 14px; padding: 20px 22px;
+    }
+    .msg-bubble { display: flex; gap: 12px; align-items: flex-start; }
+    .msg-bubble.outgoing { flex-direction: row-reverse; }
+    .msg-av {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: grid; place-items: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.72rem;
+    }
+    .msg-av.ops   { background: linear-gradient(135deg, var(--gold-dk), var(--navy2)); color: var(--text); border: 1px solid var(--gold-border); }
+    .msg-av.emp   { background: rgba(100,150,255,0.15); color: #8aabff; border: 1px solid rgba(100,150,255,0.2); }
+    .msg-body     { display: flex; flex-direction: column; gap: 4px; max-width: 80%; }
+    .msg-name     { font-size: 0.75rem; font-weight: 700; color: var(--dim); }
+    .msg-text     { padding: 12px 16px; border-radius: 14px; font-size: 0.9rem; line-height: 1.6; }
+    .msg-bubble:not(.outgoing) .msg-text { background: rgba(14,17,32,0.95); border: 1px solid var(--border-sub); color: var(--text); }
+    .msg-bubble.outgoing .msg-text       { background: rgba(100,150,255,0.1); border: 1px solid rgba(100,150,255,0.18); color: var(--text); }
+    .msg-time { font-size: 0.72rem; color: var(--dim); }
+    .msg-input-row {
+      display: flex; gap: 10px; padding: 16px 22px;
+      border-top: 1px solid var(--border-sub);
+    }
+    .msg-input {
+      flex: 1; padding: 11px 16px; border-radius: 999px;
+      border: 1px solid var(--border-sub); background: rgba(255,255,255,0.04);
+      color: var(--text); font-size: 0.9rem; outline: none;
+    }
+    .msg-input:focus { border-color: rgba(100,150,255,0.3); }
+    .btn-blue {
+      background: linear-gradient(135deg, #1e3a7a, #2a4fa0);
+      color: #c0d4ff; border-color: rgba(100,150,255,0.3);
+    }
+    .btn-blue:hover { box-shadow: 0 10px 32px rgba(50,100,220,0.3); }
+
+    /* Training cards */
+    .training-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+      padding: 20px 22px;
+    }
+    .training-card {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border-sub);
+      border-radius: var(--radius); padding: 20px 18px;
+      display: flex; gap: 14px; align-items: flex-start;
+      transition: border-color var(--trans), background var(--trans);
+    }
+    .training-card:hover { border-color: rgba(100,150,255,0.2); background: rgba(100,150,255,0.03); }
+    .training-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: grid; place-items: center; font-size: 1.1rem; color: #7099ff;
+      background: rgba(100,150,255,0.08); border: 1px solid rgba(100,150,255,0.15);
+    }
+    .training-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+    .training-sub   { font-size: 0.8rem; color: var(--dim); }
+    .training-progress { margin-top: 10px; }
+    .progress-bar-wrap { background: rgba(255,255,255,0.07); border-radius: 999px; height: 5px; overflow: hidden; }
+    .progress-bar      { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #2a4fa0, #7099ff); }
+    .progress-label    { font-size: 0.75rem; color: var(--muted); margin-top: 5px; }
+
+    @media (max-width: 640px) {
+      .training-grid { grid-template-columns: 1fr; }
+      .form-row-2    { grid-template-columns: 1fr; }
+      .schedule-strip { flex-direction: column; }
+      .sched-day { min-width: unset; }
+    }
+  </style>
+</head>
+<body class="portal-page">
+
+  <!-- Portal Header -->
+  <header class="pheader" id="header">
+    <div class="container">
+      <div class="pheader-inner">
+        <a href="index.html" class="brand">
+          <div class="logo-shield" style="color:#7099ff; background:rgba(100,150,255,0.08); border-color:rgba(100,150,255,0.2);">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Simo Security</span>
+            <span class="brand-sub">Employee Portal</span>
+          </div>
+        </a>
+        <div id="userChip" class="user-chip" style="display:none;">
+          <div class="av" id="userAv">MT</div>
+          <span id="userName">Marcus Thompson</span>
+          <i class="fas fa-chevron-down" style="font-size:0.7rem;color:var(--muted)"></i>
+        </div>
+        <a href="index.html" class="btn btn-outline" style="font-size:0.82rem; padding:9px 16px;">
+          <i class="fas fa-arrow-left"></i> Back to Site
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- LOGIN VIEW -->
+  <div class="login-wrap" id="loginView">
+    <div class="login-box" style="border-top-color: #7099ff;">
+      <div class="portal-icon" style="color:#7099ff; background:rgba(100,150,255,0.08); border:1px solid rgba(100,150,255,0.2); width:68px;height:68px;border-radius:18px;display:grid;place-items:center;font-size:1.7rem; margin:0 auto 24px;">
+        <i class="fas fa-shield-halved"></i>
+      </div>
+      <h2 class="login-title">Employee Login</h2>
+      <p class="login-sub">Manage your schedule, submit reports, and stay connected with your team</p>
+
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="l-id">Employee ID or Email</label>
+          <input id="l-id" type="text" placeholder="EMP-001 or name@simosecurity.com" required>
+        </div>
+        <div class="form-group">
+          <label for="l-pass">Password</label>
+          <input id="l-pass" type="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-blue btn-lg btn-full" style="margin-top:4px;">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        <p class="login-note">
+          Demo: use any credentials to log in.<br>
+          Issues accessing? <a href="mailto:athierasimo@gmail.com" style="color:#7099ff;">Contact HR</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+  <div class="dashboard" id="dashboard">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="dash-header">
+        <div class="dash-welcome">
+          <h2>Good morning, <span style="color:#7099ff;" id="dashName">Marcus</span></h2>
+          <p>Your shift starts at <strong>08:00 AM</strong> — Location: Midtown Executive Tower</p>
+        </div>
+        <button class="btn btn-outline" id="logoutBtn" style="font-size:0.85rem;">
+          <i class="fas fa-sign-out-alt"></i> Sign Out
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-icon emp-stat-card-icon"><i class="fas fa-calendar-check"></i></div>
+          <div class="stat-card-val emp-stat-val">5</div>
+          <div class="stat-card-lbl">Shifts This Week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon emp-stat-card-icon"><i class="fas fa-clock"></i></div>
+          <div class="stat-card-val emp-stat-val">38h</div>
+          <div class="stat-card-lbl">Hours This Month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon emp-stat-card-icon"><i class="fas fa-file-alt"></i></div>
+          <div class="stat-card-val emp-stat-val">6</div>
+          <div class="stat-card-lbl">Reports Submitted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon emp-stat-card-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="stat-card-val emp-stat-val">3</div>
+          <div class="stat-card-lbl">Trainings Due</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="dash-tab-row">
+        <button class="dash-tab active" data-tab="schedule">My Schedule</button>
+        <button class="dash-tab" data-tab="reports">Submit Report</button>
+        <button class="dash-tab" data-tab="messages">Messages</button>
+        <button class="dash-tab" data-tab="training">Training</button>
+      </div>
+
+      <!-- Tab: Schedule -->
+      <div class="tab-panel active" id="tab-schedule">
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h3>Weekly Schedule — April 7–13, 2026</h3>
+            <span class="dash-badge" style="background:rgba(100,150,255,0.1);color:#8aabff;border-color:rgba(100,150,255,0.2);">Week 15</span>
+          </div>
+          <div class="schedule-strip">
+            <div class="sched-day today">
+              <div class="sched-day-name">Monday</div>
+              <div class="sched-date">Apr 7</div>
+              <div class="sched-shift shift-day">08:00 – 16:00</div>
+              <div class="sched-loc"><i class="fas fa-map-marker-alt" style="font-size:0.7rem;margin-right:4px;"></i>Midtown Exec Tower</div>
+            </div>
+            <div class="sched-day">
+              <div class="sched-day-name">Tuesday</div>
+              <div class="sched-date">Apr 8</div>
+              <div class="sched-shift shift-day">08:00 – 16:00</div>
+              <div class="sched-loc"><i class="fas fa-map-marker-alt" style="font-size:0.7rem;margin-right:4px;"></i>Midtown Exec Tower</div>
+            </div>
+            <div class="sched-day">
+              <div class="sched-day-name">Wednesday</div>
+              <div class="sched-date">Apr 9</div>
+              <div class="sched-shift shift-night">16:00 – 00:00</div>
+              <div class="sched-loc"><i class="fas fa-map-marker-alt" style="font-size:0.7rem;margin-right:4px;"></i>Upper East Residence</div>
+            </div>
+            <div class="sched-day">
+              <div class="sched-day-name">Thursday</div>
+              <div class="sched-date">Apr 10</div>
+              <div class="sched-shift shift-night">16:00 – 00:00</div>
+              <div class="sched-loc"><i class="fas fa-map-marker-alt" style="font-size:0.7rem;margin-right:4px;"></i>Upper East Residence</div>
+            </div>
+            <div class="sched-day">
+              <div class="sched-day-name">Friday</div>
+              <div class="sched-date">Apr 11</div>
+              <div class="sched-shift shift-day">08:00 – 16:00</div>
+              <div class="sched-loc"><i class="fas fa-map-marker-alt" style="font-size:0.7rem;margin-right:4px;"></i>Midtown Exec Tower</div>
+            </div>
+            <div class="sched-day off">
+              <div class="sched-day-name">Saturday</div>
+              <div class="sched-date">Apr 12</div>
+              <div class="sched-shift shift-off">Day Off</div>
+            </div>
+            <div class="sched-day off">
+              <div class="sched-day-name">Sunday</div>
+              <div class="sched-date">Apr 13</div>
+              <div class="sched-shift shift-off">Day Off</div>
+            </div>
+          </div>
+
+          <div style="padding: 0 22px 22px;">
+            <div class="dash-panel-header" style="padding:14px 0 12px; border-top:1px solid var(--border-sub); margin-top:4px;">
+              <h3>Upcoming Assignments</h3>
+            </div>
+            <div class="dash-rows" style="padding:0;">
+              <div class="dash-row" style="padding:12px 0;">
+                <div class="dash-row-info">
+                  <div class="dash-row-title"><i class="fas fa-user-shield" style="color:#7099ff;margin-right:8px;"></i>VIP Event — Private Gala</div>
+                  <div class="dash-row-sub">April 19, 2026 · 18:00 – 02:00 · Chelsea Event Hall</div>
+                </div>
+                <span class="status-pill" style="background:rgba(100,150,255,0.12);color:#8aabff;border:1px solid rgba(100,150,255,0.2);">Assigned</span>
+              </div>
+              <div class="dash-row" style="padding:12px 0;">
+                <div class="dash-row-info">
+                  <div class="dash-row-title"><i class="fas fa-building" style="color:#7099ff;margin-right:8px;"></i>Corporate Site Inspection</div>
+                  <div class="dash-row-sub">April 22, 2026 · 09:00 – 13:00 · Financial District</div>
+                </div>
+                <span class="status-pill status-pending">Pending Confirmation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Submit Report -->
+      <div class="tab-panel" id="tab-reports">
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h3>Submit Incident / Daily Report</h3>
+          </div>
+          <form class="report-form" id="reportForm" novalidate>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label>Report Type</label>
+                <select name="type">
+                  <option value="">Select Type</option>
+                  <option>Daily Operations Report</option>
+                  <option>Incident Report</option>
+                  <option>End-of-Shift Report</option>
+                  <option>Perimeter Check</option>
+                  <option>Equipment Malfunction</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Date &amp; Time</label>
+                <input type="datetime-local" name="datetime">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Location / Assignment</label>
+              <input type="text" name="location" placeholder="e.g. Midtown Executive Tower — Lobby">
+            </div>
+            <div class="form-group">
+              <label>Incident / Activity Summary *</label>
+              <textarea name="summary" rows="4" placeholder="Describe the events, observations, or incidents that occurred during your shift…" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Actions Taken</label>
+              <textarea name="actions" rows="3" placeholder="What steps were taken? Who was contacted? What was the outcome?"></textarea>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label>Threat Level</label>
+                <select name="threat">
+                  <option value="none">None — All Clear</option>
+                  <option value="low">Low — Minor Issue</option>
+                  <option value="medium">Medium — Requires Follow-up</option>
+                  <option value="high">High — Immediate Action Taken</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Supervisor Notified?</label>
+                <select name="notified">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                  <option value="na">N/A</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-blue btn-lg" style="border-radius:999px;">
+              <i class="fas fa-paper-plane"></i> Submit Report
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab: Messages -->
+      <div class="tab-panel" id="tab-messages">
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h3>Team Communications</h3>
+            <span class="dash-badge" style="background:rgba(100,150,255,0.1);color:#8aabff;border-color:rgba(100,150,255,0.2);">Operations Channel</span>
+          </div>
+          <div class="msg-thread">
+            <div class="msg-bubble">
+              <div class="msg-av ops">OPS</div>
+              <div class="msg-body">
+                <div class="msg-name">Operations — Dispatch</div>
+                <div class="msg-text">Good morning team. All units please confirm check-in by 08:00. Today's threat assessment: Low. Standard protocols in effect. Stay alert and report any anomalies immediately.</div>
+                <div class="msg-time">Apr 7, 2026 — 07:00 AM</div>
+              </div>
+            </div>
+            <div class="msg-bubble">
+              <div class="msg-av ops">OPS</div>
+              <div class="msg-body">
+                <div class="msg-name">Operations — Dispatch</div>
+                <div class="msg-text">Marcus — reminder that the VIP client's route has been updated for today's evening briefing. Updated route card will be sent to your device by 14:00.</div>
+                <div class="msg-time">Apr 7, 2026 — 07:45 AM</div>
+              </div>
+            </div>
+            <div class="msg-bubble outgoing">
+              <div class="msg-av emp" id="empMsgAv">MT</div>
+              <div class="msg-body">
+                <div class="msg-name" id="empMsgName" style="text-align:right;">Marcus Thompson</div>
+                <div class="msg-text">Confirmed check-in at 08:02. On post. Will monitor for route update. All clear on my end.</div>
+                <div class="msg-time" style="text-align:right;">Apr 7, 2026 — 08:03 AM</div>
+              </div>
+            </div>
+          </div>
+          <div class="msg-input-row">
+            <input class="msg-input" type="text" placeholder="Send a secure message to operations…">
+            <button class="btn btn-blue" style="padding:11px 20px;border-radius:999px;">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Training -->
+      <div class="tab-panel" id="tab-training">
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h3>Training &amp; Certifications</h3>
+            <span class="dash-badge" style="background:rgba(100,150,255,0.1);color:#8aabff;border-color:rgba(100,150,255,0.2);">3 Due This Month</span>
+          </div>
+          <div class="training-grid">
+            <div class="training-card">
+              <div class="training-icon"><i class="fas fa-heartbeat"></i></div>
+              <div>
+                <div class="training-title">First Aid &amp; CPR Recertification</div>
+                <div class="training-sub">Required annually · Due Apr 30</div>
+                <div class="training-progress">
+                  <div class="progress-bar-wrap"><div class="progress-bar" style="width:0%"></div></div>
+                  <div class="progress-label">Not started</div>
+                </div>
+              </div>
+            </div>
+            <div class="training-card">
+              <div class="training-icon"><i class="fas fa-user-shield"></i></div>
+              <div>
+                <div class="training-title">Executive Protection Tactics Update</div>
+                <div class="training-sub">Annual training · Due Apr 20</div>
+                <div class="training-progress">
+                  <div class="progress-bar-wrap"><div class="progress-bar" style="width:40%"></div></div>
+                  <div class="progress-label">40% complete</div>
+                </div>
+              </div>
+            </div>
+            <div class="training-card">
+              <div class="training-icon"><i class="fas fa-lock"></i></div>
+              <div>
+                <div class="training-title">Cybersecurity Awareness</div>
+                <div class="training-sub">Mandatory · Due Apr 15</div>
+                <div class="training-progress">
+                  <div class="progress-bar-wrap"><div class="progress-bar" style="width:75%"></div></div>
+                  <div class="progress-label">75% complete</div>
+                </div>
+              </div>
+            </div>
+            <div class="training-card">
+              <div class="training-icon"><i class="fas fa-car"></i></div>
+              <div>
+                <div class="training-title">Defensive Driving Certification</div>
+                <div class="training-sub">Completed · Valid until Dec 2026</div>
+                <div class="training-progress">
+                  <div class="progress-bar-wrap"><div class="progress-bar" style="width:100%;background:linear-gradient(90deg,#1a6640,#2dcc70);"></div></div>
+                  <div class="progress-label" style="color:#4ddb88;">Certified ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="training-card">
+              <div class="training-icon"><i class="fas fa-shield-alt"></i></div>
+              <div>
+                <div class="training-title">Firearms Safety &amp; Qualification</div>
+                <div class="training-sub">Completed · Valid until Jun 2026</div>
+                <div class="training-progress">
+                  <div class="progress-bar-wrap"><div class="progress-bar" style="width:100%;background:linear-gradient(90deg,#1a6640,#2dcc70);"></div></div>
+                  <div class="progress-label" style="color:#4ddb88;">Certified ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="training-card">
+              <div class="training-icon"><i class="fas fa-video"></i></div>
+              <div>
+                <div class="training-title">Surveillance &amp; CCTV Operations</div>
+                <div class="training-sub">Completed · Valid until Mar 2027</div>
+                <div class="training-progress">
+                  <div class="progress-bar-wrap"><div class="progress-bar" style="width:100%;background:linear-gradient(90deg,#1a6640,#2dcc70);"></div></div>
+                  <div class="progress-label" style="color:#4ddb88;">Certified ✓</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="alert"></div>
+
+  <script>
+    const loginView = document.getElementById('loginView');
+    const dashboard = document.getElementById('dashboard');
+    const userChip  = document.getElementById('userChip');
+    const loginForm = document.getElementById('loginForm');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const toast     = document.getElementById('toast');
+
+    function showToast(msg, type) {
+      toast.textContent = msg;
+      toast.className = 'toast ' + type + ' show';
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id   = document.getElementById('l-id').value.trim();
+      const pass = document.getElementById('l-pass').value;
+      if (!id || !pass) { showToast('Please enter your credentials.', 'error'); return; }
+
+      const btn = loginForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in…';
+
+      setTimeout(() => {
+        // Derive name from input
+        let displayName = 'Officer';
+        let initials = 'OF';
+        if (id.includes('@')) {
+          const parts = id.split('@')[0].split('.');
+          const first = parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+          const last  = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : '';
+          displayName = last ? first + ' ' + last : first;
+          initials = first[0] + (last ? last[0] : '');
+        } else if (id.toUpperCase().startsWith('EMP')) {
+          displayName = 'Officer ' + id.toUpperCase();
+          initials = 'OF';
+        } else {
+          displayName = id.charAt(0).toUpperCase() + id.slice(1);
+          initials = id.slice(0, 2).toUpperCase();
+        }
+
+        document.getElementById('dashName').textContent = displayName.split(' ')[0];
+        document.getElementById('userName').textContent = displayName;
+        document.getElementById('userAv').textContent   = initials;
+        document.getElementById('empMsgAv').textContent  = initials;
+        document.getElementById('empMsgName').textContent = displayName;
+
+        loginView.style.display = 'none';
+        dashboard.classList.add('active');
+        userChip.style.display = 'flex';
+
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+        showToast('Welcome back, ' + displayName.split(' ')[0] + '!', 'success');
+      }, 1400);
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      dashboard.classList.remove('active');
+      loginView.style.display = 'flex';
+      userChip.style.display = 'none';
+      loginForm.reset();
+    });
+
+    /* Tabs */
+    document.querySelectorAll('.dash-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    /* Report form */
+    const reportForm = document.getElementById('reportForm');
+    reportForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const summary = reportForm.querySelector('[name="summary"]').value.trim();
+      if (!summary) { showToast('Please enter a report summary.', 'error'); return; }
+      const btn = reportForm.querySelector('button[type="submit"]');
+      const orig = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = orig;
+        reportForm.reset();
+        showToast('Report submitted successfully!', 'success');
+      }, 1600);
+    });
+
+    /* Message send */
+    const msgInput = document.querySelector('.msg-input');
+    const msgSendBtn = document.querySelector('.msg-input-row .btn');
+    if (msgInput && msgSendBtn) {
+      msgSendBtn.addEventListener('click', sendMsg);
+      msgInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
+    }
+    function sendMsg() {
+      const val = msgInput.value.trim();
+      if (!val) return;
+      const thread = document.querySelector('.msg-thread');
+      const b = document.createElement('div');
+      b.className = 'msg-bubble outgoing';
+      b.innerHTML = `
+        <div class="msg-av emp">${document.getElementById('userAv').textContent}</div>
+        <div class="msg-body">
+          <div class="msg-name" style="text-align:right;">${document.getElementById('userName').textContent}</div>
+          <div class="msg-text">${val}</div>
+          <div class="msg-time" style="text-align:right;">Just now</div>
+        </div>`;
+      thread.appendChild(b);
+      msgInput.value = '';
+      thread.scrollTop = thread.scrollHeight;
+    }
+  </script>
+</body>
+</html>
