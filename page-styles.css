@@ -272,14 +272,20 @@ body::selection { color: #07080f; background: #e5c96c; }
 
 /* Panel estrecho: solo muestra las cuatro categorias. Los servicios aparecen
    al desplegar una de ellas, no todos a la vez. */
+/* Altura fija: abrir o cerrar una categoria no cambia el tamano del panel.
+   Lo que no cabe se desplaza dentro; el panel nunca se estira. */
 .nav-dropdown-menu {
   width: 300px;
   max-width: calc(100vw - 32px);
+  height: min(352px, calc(100vh - 120px));
+  display: flex;
+  flex-direction: column;
   padding: 8px;
   position: absolute;
   top: calc(100% + 12px);
   left: 0;
   z-index: 1200;
+  overflow-y: auto;
   border: 1px solid var(--page-line);
   border-radius: 12px;
   background: rgba(9, 11, 20, 0.99);
@@ -309,7 +315,19 @@ body::selection { color: #07080f; background: #e5c96c; }
   transform: translateY(0);
 }
 
-.nav-dd-cols { display: block; }
+/* Solo esta zona se desplaza; el pie queda siempre visible. */
+.nav-dd-cols {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.nav-dd-cols::-webkit-scrollbar { width: 6px; }
+.nav-dd-cols::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: rgba(201, 168, 76, 0.26);
+}
 
 /* Cabecera de categoria: fila completa pulsable. */
 .nav-dd-cat {
@@ -377,6 +395,7 @@ body::selection { color: #07080f; background: #e5c96c; }
 }
 
 .nav-dropdown-all {
+  flex-shrink: 0;
   margin-top: 6px;
   padding: 11px 10px 6px;
   display: block;
