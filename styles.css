@@ -235,7 +235,9 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; line-height: 1.15; }
   background:
     linear-gradient(160deg, rgba(7, 8, 15, 0.88) 0%, rgba(13, 27, 42, 0.7) 50%, rgba(7, 8, 15, 0.92) 100%),
     linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),
-    url('./assents/simo-hero.jpg') center / cover no-repeat;
+    /* simo-hero.jpg es en realidad un PNG de 2.3 MB. El WebP es la misma imagen
+       a 1536x1024 en 118 KB: 95% menos de descarga en cada visita al inicio. */
+    url('./assents/simo-hero.webp') center / cover no-repeat;
 }
 
 .hero-overlay {

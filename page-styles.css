@@ -239,6 +239,31 @@ body::selection { color: #07080f; background: #e5c96c; }
   .service-link-card { transition: none; }
 }
 
+/* "Portals" era un enlace de texto identico a About o Services, asi que un
+   empleado o un cliente que vuelve a entrar no lo distinguia de la navegacion
+   de marketing. Como boton secundario queda visible en todas las paginas y en
+   el header fijo, sin competir con el CTA dorado de consulta. */
+.nav-portal {
+  padding: 9px 18px;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.nav-portal i {
+  margin-right: 7px;
+  font-size: 0.78rem;
+}
+
+.mob-portal {
+  margin: 6px 0;
+  justify-content: center;
+}
+
+.mob-portal i {
+  margin-right: 8px;
+}
+
 /* Trampa antispam. Fuera de pantalla en vez de display:none, porque algunos
    bots ignoran los campos ocultos con display:none. aria-hidden y tabindex=-1
    la mantienen invisible para lectores de pantalla y para el teclado. */

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 468 84" role="img" aria-labelledby="lightTitle lightDesc">
+  <title id="lightTitle">SIMO Security and Consulting LLC, light background</title>
+  <desc id="lightDesc">SIMO Security lockup for use on white or light backgrounds.</desc>
+  <defs>
+    <linearGradient id="lightGold" x1="8" y1="4" x2="54" y2="66" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d9b85c"/>
+      <stop offset="0.48" stop-color="#b8963c"/>
+      <stop offset="1" stop-color="#7d5c1c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sobre blanco, el dorado claro del original baja de 2:1 de contraste y deja
+       de cumplir AA. Esta version oscurece el degradado y usa texto casi negro. -->
+  <g transform="translate(2 6)">
+    <path fill="url(#lightGold)" d="M32 1.5 60 12.4v20.9c0 17.7-10.7 30.6-28 37.2C14.7 63.9 4 51 4 33.3V12.4L32 1.5Z"/>
+    <path fill="#0e1120" d="M32 7.1 54.5 16v17.2c0 14.2-8.2 24.8-22.5 31-14.3-6.2-22.5-16.8-22.5-31V16L32 7.1Z"/>
+    <path fill="none" stroke="#c9a84c" stroke-width="1.2" opacity=".6" d="M32 11.5 50.6 19v14c0 11.5-6.6 20.4-18.6 26-12-5.6-18.6-14.5-18.6-26V19L32 11.5Z"/>
+    <path fill="#e5c96c" d="M42.8 20.5H27.2c-6.1 0-10.2 3.3-10.2 8.2 0 4.2 2.6 6.8 8 8.1l10.3 2.5c2.2.5 3.1 1.5 3.1 3 0 1.8-1.5 3-4 3H18.7v6.2h15.8c6.6 0 10.8-3.4 10.8-8.8 0-4.5-2.8-7.3-8.5-8.7l-10-2.4c-2-.5-2.8-1.3-2.8-2.6 0-1.5 1.3-2.4 3.5-2.4h15.3v-6.1Z"/>
+  </g>
+
+  <text x="88" y="44" fill="#0e1120" font-family="Montserrat, 'Segoe UI', Arial, sans-serif"
+        font-size="34" font-weight="800" letter-spacing="2"
+        textLength="348" lengthAdjust="spacingAndGlyphs">SIMO SECURITY</text>
+
+  <path d="M88 55h348" stroke="#b8963c" stroke-width="2"/>
+
+  <text x="88" y="74" fill="#55596a" font-family="Montserrat, 'Segoe UI', Arial, sans-serif"
+        font-size="13" font-weight="600" letter-spacing="4"
+        textLength="348" lengthAdjust="spacingAndGlyphs">&amp; CONSULTING LLC</text>
+</svg>
