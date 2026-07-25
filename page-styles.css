@@ -238,3 +238,70 @@ body::selection { color: #07080f; background: #e5c96c; }
 @media (prefers-reduced-motion: reduce) {
   .service-link-card { transition: none; }
 }
+
+/* Trampa antispam. Fuera de pantalla en vez de display:none, porque algunos
+   bots ignoran los campos ocultos con display:none. aria-hidden y tabindex=-1
+   la mantienen invisible para lectores de pantalla y para el teclado. */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.form-consent input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--page-gold);
+  cursor: pointer;
+}
+
+.form-consent label {
+  margin: 0;
+  color: var(--page-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+/* El area de estado ocupa espacio solo cuando hay un mensaje, para que el
+   formulario no salte al enviarse. */
+.form-status {
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status.success {
+  color: #86d9a8;
+}
+
+.form-status.error {
+  color: #ff9b9b;
+}
+
+.page-form button[type="submit"][disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* Foco visible en todos los controles del formulario: sin esto la navegacion
+   por teclado es invisible sobre fondo oscuro. */
+.page-form :is(input, select, textarea, button):focus-visible {
+  outline: 2px solid var(--page-gold-light);
+  outline-offset: 2px;
+}

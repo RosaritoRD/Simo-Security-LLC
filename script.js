@@ -58,25 +58,85 @@
 
   const form = document.getElementById('contactForm');
   if (form) {
-    form.addEventListener('submit', (event) => {
+    const submitButton = form.querySelector('[type="submit"]');
+    const statusRegion = document.getElementById('contactStatus');
+
+    // Los mensajes van al toast y a una region aria-live, para que un lector de
+    // pantalla anuncie el resultado sin depender del toast visual.
+    function announce(message, type) {
+      showToast(message, type);
+      if (statusRegion) {
+        statusRegion.textContent = message;
+        statusRegion.className = `form-status ${type}`;
+      }
+    }
+
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const name = form.querySelector('[name="name"]')?.value.trim() ?? '';
-      const email = form.querySelector('[name="email"]')?.value.trim() ?? '';
-      const phone = form.querySelector('[name="phone"]')?.value.trim() ?? '';
-      const service = form.querySelector('[name="service"]')?.value.trim() ?? '';
-      const message = form.querySelector('[name="message"]')?.value.trim() ?? '';
+
+      const value = (name) => form.querySelector(`[name="${name}"]`)?.value.trim() ?? '';
+      const name = value('name');
+      const email = value('email');
+      const message = value('message');
+      const consent = form.querySelector('[name="consent"]')?.checked === true;
+
+      // Validacion en cliente solo para dar respuesta inmediata. La que cuenta
+      // es la del servidor, que se ejecuta igual aunque se salte esta.
       if (!name || !email || !message) {
-        showToast('Please fill in all required fields.', 'error');
+        announce('Please fill in all required fields.', 'error');
         return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showToast('Please enter a valid email address.', 'error');
+        announce('Please enter a valid email address.', 'error');
         return;
       }
-      const subject = encodeURIComponent(`Website inquiry${service ? ` — ${service}` : ''}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nService: ${service || 'Not selected'}\n\nMessage:\n${message}`);
-      window.location.href = `mailto:athierasimo@gmail.com?subject=${subject}&body=${body}`;
-      showToast('Your email app has been opened. Review the message and press Send.');
+      if (!consent) {
+        announce('Please confirm that we may contact you about this request.', 'error');
+        return;
+      }
+
+      const payload = {
+        name,
+        email,
+        phone: value('phone'),
+        serviceType: value('service') || undefined,
+        message,
+        consent: true,
+        website: value('website'),
+      };
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.dataset.label = submitButton.innerHTML;
+        submitButton.textContent = 'Sending…';
+      }
+
+      try {
+        const response = await fetch('/api/v1/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+          form.reset();
+          announce('Thank you. Your request has been received and we will respond shortly.', 'success');
+          return;
+        }
+
+        // El backend devuelve { code, message } con un texto pensado para el
+        // visitante. Mostrarlo es mejor que un "request failed" generico.
+        const body = await response.json().catch(() => null);
+        announce(body?.message || 'We could not send your request. Please call us instead.', 'error');
+      } catch {
+        // Nunca se afirma que se envio si la peticion no llego a completarse.
+        announce('We could not reach our server. Please call (201) 312-3509.', 'error');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          if (submitButton.dataset.label) submitButton.innerHTML = submitButton.dataset.label;
+        }
+      }
     });
   }
 
