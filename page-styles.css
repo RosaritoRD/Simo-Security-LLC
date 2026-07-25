@@ -93,6 +93,16 @@ body::selection { color: #07080f; background: #e5c96c; }
   background: #080a12;
 }
 
+.page-hero--legal {
+  min-height: 430px;
+}
+
+.page-hero--not-found {
+  min-height: 100vh;
+  align-items: center;
+  padding: 80px 0;
+}
+
 .page-hero::before {
   content: "";
   position: absolute;
@@ -237,6 +247,145 @@ body::selection { color: #07080f; background: #e5c96c; }
 
 @media (prefers-reduced-motion: reduce) {
   .service-link-card { transition: none; }
+}
+
+/* --- Menu desplegable de Services --------------------------------------- */
+
+.nav-dropdown { position: relative; }
+
+.nav-dropdown-toggle {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: inherit;
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-dropdown-toggle i {
+  font-size: 0.66rem;
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown-toggle[aria-expanded="true"] i { transform: rotate(180deg); }
+
+.nav-dropdown-menu {
+  min-width: 560px;
+  padding: 14px;
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  z-index: 1200;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 10px;
+  border: 1px solid var(--page-line);
+  border-radius: 14px;
+  background: rgba(10, 12, 23, 0.985);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  /* Oculto por defecto sin display:none, para poder animarlo y para que el
+     lector de pantalla no lo anuncie mientras esta cerrado. */
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, -8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+/* Puente invisible entre el boton y el panel: sin el, el menu se cierra al
+   mover el raton por el hueco que los separa. */
+.nav-dropdown::after {
+  content: "";
+  height: 20px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.nav-dropdown:hover::after { display: block; }
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown-toggle[aria-expanded="true"] + .nav-dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.nav-dropdown-menu a {
+  padding: 10px 13px;
+  display: block;
+  color: var(--page-muted);
+  font-size: 0.87rem;
+  border-radius: 9px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible {
+  color: var(--page-text);
+  background: rgba(201, 168, 76, 0.1);
+}
+
+.nav-dropdown-all {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  padding-top: 14px !important;
+  color: var(--page-gold-light) !important;
+  font-weight: 600;
+  border-top: 1px solid var(--page-line);
+  border-radius: 0 !important;
+}
+
+.nav-dropdown-all i { margin-left: 7px; font-size: 0.72rem; }
+
+/* Submenu movil: se despliega en vertical dentro del menu hamburguesa. */
+.mob-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mob-toggle i { font-size: 0.72rem; transition: transform 0.2s ease; }
+.mob-toggle[aria-expanded="true"] i { transform: rotate(180deg); }
+
+.mob-submenu {
+  display: none;
+  padding: 4px 0 10px 16px;
+  border-left: 1px solid var(--page-line);
+  margin-left: 4px;
+}
+
+.mob-submenu.open { display: block; }
+
+.mob-submenu a {
+  padding: 9px 0;
+  display: block;
+  color: var(--page-muted);
+  font-size: 0.88rem;
+}
+
+.mob-submenu a:hover { color: var(--page-text); }
+
+@media (max-width: 1080px) {
+  .nav-dropdown-menu { min-width: 440px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-dropdown-menu,
+  .nav-dropdown-toggle i,
+  .mob-toggle i { transition: none; }
 }
 
 /* "Portals" era un enlace de texto identico a About o Services, asi que un

@@ -12,12 +12,55 @@
       hamburger.classList.toggle('open', isOpen);
       hamburger.setAttribute('aria-expanded', String(isOpen));
     });
-    mobileNav.querySelectorAll('.mob-link, .mob-cta').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
+    // :not(.mob-toggle) es imprescindible: el boton de Services tambien lleva la
+    // clase .mob-link, y sin excluirlo cerraria el menu entero en vez de
+    // desplegar su submenu.
+    mobileNav
+      .querySelectorAll('.mob-link:not(.mob-toggle), .mob-cta, .mob-portal, .mob-submenu a')
+      .forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
       });
+  }
+
+  // Menu desplegable de Services. En escritorio el CSS ya lo abre al pasar el
+  // raton; esto anade el teclado, que es lo que el hover no cubre.
+  const servicesToggle = document.getElementById('servicesToggle');
+  const servicesMenu = document.getElementById('servicesMenu');
+  if (servicesToggle && servicesMenu) {
+    const setOpen = (open) => servicesToggle.setAttribute('aria-expanded', String(open));
+    const isOpen = () => servicesToggle.getAttribute('aria-expanded') === 'true';
+
+    servicesToggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      setOpen(!isOpen());
+    });
+
+    document.addEventListener('click', (event) => {
+      if (isOpen() && !servicesToggle.parentElement.contains(event.target)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !isOpen()) return;
+      setOpen(false);
+      servicesToggle.focus();
+    });
+
+    // Al navegar a un enlace el menu debe quedar cerrado para la siguiente pagina.
+    servicesMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+  }
+
+  const mobServicesToggle = document.getElementById('mobServicesToggle');
+  const mobServicesMenu = document.getElementById('mobServicesMenu');
+  if (mobServicesToggle && mobServicesMenu) {
+    mobServicesToggle.addEventListener('click', () => {
+      const open = mobServicesMenu.classList.toggle('open');
+      mobServicesToggle.setAttribute('aria-expanded', String(open));
     });
   }
 
