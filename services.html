@@ -1,160 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services - Simo Security</title>
-  <meta name="description" content="Security services for nightlife, private events, executive clients and corporate operations in NYC." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security Services | SIMO Security &amp; Consulting LLC</title>
+  <meta name="description" content="Explore executive protection, venue security, residential security, CCTV, cybersecurity, secure transportation, and security consulting services.">
+  <link rel="canonical" href="https://simosecuritygroup.com/services.html"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/page-styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-  <header>
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="index.html" aria-label="Simo Security Home">
-          <div class="logo-icon">SS</div>
-          <div class="logo-text">
-            <strong>Simo Security</strong>
-            <small>Security and Consulting LLC - NYC</small>
-          </div>
-        </a>
-        <nav class="links" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a class="active" href="services.html">Services</a>
-          <a href="executive-protection.html">Executive Protection</a>
-          <a href="consulting.html">Consulting</a>
-          <a href="transportation.html">Transportation</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="testimonials.html">Testimonials</a>
-          <a href="about.html">About</a>
-          <a class="btn primary" href="contact.html">Request Quote</a>
-        </nav>
-        <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
-      </div>
-    </div>
-    <div class="mobile" id="mobileNav" aria-label="Mobile navigation">
-      <a href="index.html">Home</a>
-      <a class="active" href="services.html">Services</a>
-      <a href="executive-protection.html">Executive Protection</a>
-      <a href="consulting.html">Consulting</a>
-      <a href="transportation.html">Transportation</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </header>
-
-  <section class="section">
-    <div class="container">
-      <div class="page-hero-media">
-        <img class="page-hero-image" src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1800&q=80" alt="New York skyline at night" loading="lazy" />
-      </div>
-      <h1 class="page-title">Services</h1>
-      <p class="page-sub">Professional coverage options tailored to NYC venues, private clients and corporate needs.</p>
-
-      <div class="grid">
-        <article class="card">
-          <h3>Nightlife and Venue Security</h3>
-          <p>Door teams, access control, VIP entry and incident prevention for high-volume nightlife operations.</p>
-          <div class="badges"><span class="badge">Access</span><span class="badge">VIP</span><span class="badge">Crowd</span></div>
-        </article>
-        <article class="card">
-          <h3>Private Events</h3>
-          <p>Coverage for weddings, launches, rooftops and private celebrations with discreet guest flow control.</p>
-          <div class="badges"><span class="badge">Events</span><span class="badge">Guest Flow</span><span class="badge">Discreet</span></div>
-        </article>
-        <article class="card">
-          <h3>Residential and Property Security</h3>
-          <p>On-site presence, patrols, visitor management and incident reporting for residential properties.</p>
-          <div class="badges"><span class="badge">Patrol</span><span class="badge">Visitors</span><span class="badge">Reports</span></div>
-        </article>
-        <article class="card">
-          <h3>Corporate and Asset Protection</h3>
-          <p>Operational planning, staffing and controlled access programs for offices and business sites.</p>
-          <div class="badges"><span class="badge">SOP</span><span class="badge">Staffing</span><span class="badge">Control</span></div>
-        </article>
-      </div>
-
-      <section class="lead">
-        <div class="lead-card">
-          <div>
-            <h2>Need Immediate Coverage?</h2>
-            <p class="page-sub">Tell us your date, location and expected attendance. We will respond with the right staffing option.</p>
-          </div>
-          <div class="lead-right">
-            <button class="btn primary" id="openQuote" type="button">Open Quote Form</button>
-            <a class="btn" href="https://wa.me/12013123509" target="_blank" rel="noopener">WhatsApp</a>
-            <p class="tiny-note">Or email: <a href="mailto:athierasimo@gmail.com">athierasimo@gmail.com</a></p>
-          </div>
-        </div>
-      </section>
-    </div>
-  </section>
-
-  <div class="modal-backdrop" id="quoteModal" aria-hidden="true">
-    <div class="modal">
-      <div class="modal-head">
-        <h3>Request a Quote</h3>
-        <button class="icon-btn" id="closeQuote" aria-label="Close quote modal" type="button">&#10005;</button>
-      </div>
-      <form class="quote-form" id="quoteForm">
-        <div class="grid2">
-          <label>Full Name <input type="text" name="name" required /></label>
-          <label>Phone <input type="tel" name="phone" required /></label>
-        </div>
-        <label>Email <input type="email" name="email" required /></label>
-        <div class="grid2">
-          <label>
-            Service Type
-            <select name="service" required>
-              <option value="">Select...</option>
-              <option>Nightlife and Venue Security</option>
-              <option>Private Events</option>
-              <option>Residential and Property Security</option>
-              <option>Corporate and Asset Protection</option>
-              <option>Executive Protection</option>
-              <option>Secure Transportation</option>
-              <option>Consulting</option>
-            </select>
-          </label>
-          <label>Date <input type="date" name="date" required /></label>
-        </div>
-        <div class="grid2">
-          <label>Hours Needed <input type="number" min="1" max="24" name="hours" placeholder="e.g. 6" required /></label>
-          <label>Location (NYC) <input type="text" name="location" placeholder="Venue / address / borough" required /></label>
-        </div>
-        <label>Details (optional) <textarea name="details" rows="4" placeholder="Crowd size, VIP movement, entry points, special requirements"></textarea></label>
-        <button class="btn primary full" type="submit">Send Request</button>
-      </form>
-    </div>
-  </div>
-
-  <section class="section faq">
-    <div class="container">
-      <h2 class="page-title">FAQ</h2>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false" type="button">What areas do you cover?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>NYC and surrounding metro areas. Out-of-area requests are handled by scope and notice.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false" type="button">How fast can your team deploy?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Based on staffing and scope, we can often support same-day or next-day requests.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false" type="button">What do you need for a quote?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Date, location, service type, hours and any details about VIP movement or crowd profile.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Simo Security and Consulting LLC - NYC Metro Area</p>
-    </div>
-  </footer>
-  <script src="script.js"></script>
-</body>
-</html>
+<body class="inner-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header id="header"><div class="container"><nav class="navbar"><a href="/" class="brand"><div class="logo-shield"><i class="fas fa-shield-halved"></i></div><div class="brand-text"><span class="brand-name">Simo Security</span><span class="brand-sub">&amp; Consulting LLC</span></div></a><div class="nav-links" id="navLinks"><a href="/about.html">About</a><a class="active-link" href="/services.html">Services</a><a href="/consulting.html">Consulting</a><a href="/gallery.html">Operations</a><a href="/login.html">Portals</a><a href="/contact.html" class="btn btn-gold nav-cta">Request a Consultation</a></div><button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></nav></div><div class="mobile-nav" id="mobileNav"><a href="/about.html" class="mob-link">About</a><a href="/services.html" class="mob-link">Services</a><a href="/consulting.html" class="mob-link">Consulting</a><a href="/gallery.html" class="mob-link">Operations</a><a href="/login.html" class="mob-link">Portals</a><a href="/contact.html" class="btn btn-gold mob-cta">Request a Consultation</a></div></header>
+  <main id="main-content">
+    <section class="page-hero"><div class="container page-hero-copy" data-animate="fade-up"><p class="page-kicker">Security Services</p><h1>One Standard. Every Environment.</h1><p>From personal protection and staffed security to technology, consulting, and movement coordination, every service is tailored to the client's actual operating conditions.</p><div class="page-actions"><a class="btn btn-gold btn-lg" href="/contact.html">Build Your Security Plan</a><a class="btn btn-outline btn-lg" href="tel:+12013123509">Call Our Team</a></div></div></section>
+    <section class="page-section"><div class="container"><div class="page-heading"><p class="page-kicker">Core Capabilities</p><h2>Integrated Protection Without Unnecessary Complexity.</h2><p>Choose a focused service or combine capabilities into one coordinated security program.</p></div><div class="content-grid">
+      <article class="content-card"><span class="content-icon"><i class="fas fa-user-shield"></i></span><h2>Executive Protection</h2><p>Discreet close protection, advance work, movement planning, and threat-aware support for principals and families.</p><ul><li>Close protection officers</li><li>Advance and route planning</li><li>Arrival and departure coordination</li></ul><div class="page-actions"><a class="svc-link" href="/executive-protection.html">View service <i class="fas fa-arrow-right"></i></a></div></article>
+      <article class="content-card"><span class="content-icon"><i class="fas fa-building-shield"></i></span><h2>Corporate &amp; Venue Security</h2><p>Professional coverage for offices, hospitality, nightlife, events, and controlled-access environments.</p><ul><li>Access and guest management</li><li>Visible deterrence</li><li>Incident documentation</li></ul><div class="page-actions"><a class="svc-link" href="/contact.html">Discuss coverage <i class="fas fa-arrow-right"></i></a></div></article>
+      <article class="content-card"><span class="content-icon"><i class="fas fa-house-lock"></i></span><h2>Residential Security</h2><p>Customized protection for private residences, managed properties, communities, and family environments.</p><ul><li>On-site presence and patrols</li><li>Visitor procedures</li><li>Property risk review</li></ul><div class="page-actions"><a class="svc-link" href="/residential-security.html">View service <i class="fas fa-arrow-right"></i></a></div></article>
+      <article class="content-card"><span class="content-icon"><i class="fas fa-video"></i></span><h2>CCTV &amp; Security Systems</h2><p>Planning and installation support for cameras, access control, alarms, and monitoring infrastructure.</p><ul><li>Coverage assessment</li><li>System design</li><li>Operational handoff</li></ul><div class="page-actions"><a class="svc-link" href="/security-systems.html">View service <i class="fas fa-arrow-right"></i></a></div></article>
+      <article class="content-card"><span class="content-icon"><i class="fas fa-laptop-shield"></i></span><h2>Cybersecurity</h2><p>Practical risk review and security guidance for accounts, devices, business processes, and sensitive information.</p><ul><li>Security posture review</li><li>Access and account guidance</li><li>Incident-readiness planning</li></ul><div class="page-actions"><a class="svc-link" href="/cybersecurity.html">View service <i class="fas fa-arrow-right"></i></a></div></article>
+      <article class="content-card"><span class="content-icon"><i class="fas fa-compass"></i></span><h2>Security Consulting</h2><p>Assessments, staffing strategy, procedures, training support, and practical plans that teams can execute.</p><ul><li>Risk and vulnerability review</li><li>SOP development</li><li>Post-incident improvement</li></ul><div class="page-actions"><a class="svc-link" href="/consulting.html">View service <i class="fas fa-arrow-right"></i></a></div></article>
+      <article class="content-card"><span class="content-icon"><i class="fas fa-calendar-check"></i></span><h2>Private Event Security</h2><p>Scalable security for celebrations, launches, meetings, and private gatherings with controlled guest flow.</p><ul><li>Pre-event planning</li><li>Entry and perimeter control</li><li>Emergency coordination</li></ul><div class="page-actions"><a class="svc-link" href="/contact.html">Plan an event <i class="fas fa-arrow-right"></i></a></div></article>
+      <article class="content-card"><span class="content-icon"><i class="fas fa-route"></i></span><h2>Secure Transportation</h2><p>Discreet movement support with advance planning, professional coordination, and contingency awareness.</p><ul><li>Route and timing review</li><li>Secure arrivals</li><li>Protection-team coordination</li></ul><div class="page-actions"><a class="svc-link" href="/transportation.html">View service <i class="fas fa-arrow-right"></i></a></div></article>
+      <article class="content-card"><span class="content-icon"><i class="fas fa-headset"></i></span><h2>Client Operations Support</h2><p>Authorized clients receive secure access to service information, reports, documents, messages, and support.</p><ul><li>Role-based portal access</li><li>Shared operational reports</li><li>Direct service communication</li></ul><div class="page-actions"><a class="svc-link" href="/login.html">Open portal <i class="fas fa-arrow-right"></i></a></div></article>
+    </div></div></section>
+    <section class="page-section alt"><div class="container"><div class="page-heading center"><p class="page-kicker">Our Process</p><h2>Security Built Around Your Environment.</h2></div><div class="process-grid"><article class="process-step"><span>STEP 01</span><h3>Discovery</h3><p>We clarify priorities, people, locations, schedules, and constraints.</p></article><article class="process-step"><span>STEP 02</span><h3>Assessment</h3><p>We identify exposure, dependencies, and practical response requirements.</p></article><article class="process-step"><span>STEP 03</span><h3>Deployment</h3><p>Personnel, procedures, and communications are aligned to the approved plan.</p></article><article class="process-step"><span>STEP 04</span><h3>Review</h3><p>Reporting and client feedback drive continuous improvement.</p></article></div></div></section>
+    <section class="page-cta"><div class="container"><p class="page-kicker">Tailored Coverage</p><h2>Not Sure Which Service You Need?</h2><p>Describe the environment and your priorities. We will help define the right scope without overselling unnecessary coverage.</p><div class="page-actions"><a class="btn btn-gold btn-lg" href="/contact.html">Request a Consultation</a></div></div></section>
+  </main>
+  <footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand-col"><a href="/" class="brand footer-brand-logo"><div class="logo-shield"><i class="fas fa-shield-halved"></i></div><div class="brand-text"><span class="brand-name">Simo Security</span><span class="brand-sub">&amp; Consulting LLC</span></div></a><p class="footer-desc">Professional security and consulting for executives, organizations, properties, and private clients.</p></div><div class="footer-col"><h4>Company</h4><ul><li><a href="/about.html">About</a></li><li><a href="/gallery.html">Operations</a></li><li><a href="/testimonials.html">Testimonials</a></li><li><a href="/employment.html">Careers</a></li></ul></div><div class="footer-col"><h4>Services</h4><ul><li><a href="/services.html">All Services</a></li><li><a href="/executive-protection.html">Executive Protection</a></li><li><a href="/consulting.html">Consulting</a></li><li><a href="/security-systems.html">Security Systems</a></li></ul></div><div class="footer-col"><h4>Access</h4><ul><li><a href="/login.html">Secure Portal</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 Simo Security and Consulting LLC. All Rights Reserved.</p><p class="footer-license">Licensed &amp; Insured | NYC Metro Area</p></div></div></footer>
+  <script src="/script.js"></script>
+</body></html>

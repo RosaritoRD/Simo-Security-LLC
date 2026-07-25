@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /login.html
+Disallow: /app.html
+Disallow: /admin-portal.html
+Disallow: /employee-portal.html
+Disallow: /client-portal.html
+Disallow: /users.html
+Disallow: /sites.html
+Disallow: /services-portal.html
+Disallow: /assignments.html
+Disallow: /reports.html
+Disallow: /messages.html
+Disallow: /documents.html
+Disallow: /billing.html
+Disallow: /attendance.html
+Disallow: /certifications.html
+
+Sitemap: https://simosecuritygroup.com/sitemap.xml

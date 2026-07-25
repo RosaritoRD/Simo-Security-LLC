@@ -1,0 +1,10 @@
+{
+  "name": "SIMO Security & Consulting LLC",
+  "short_name": "SIMO Security",
+  "description": "Professional security and consulting services in the NYC Metro Area.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07080f",
+  "theme_color": "#07080f",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
