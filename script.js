@@ -7,90 +7,22 @@
   const header = document.getElementById('header');
 
   if (hamburger && mobileNav) {
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
+    const setMobileMenu = (isOpen) => {
+      mobileNav.classList.toggle('open', isOpen);
       hamburger.classList.toggle('open', isOpen);
       hamburger.setAttribute('aria-expanded', String(isOpen));
-    });
-    // :not(.mob-toggle) es imprescindible: el boton de Services tambien lleva la
-    // clase .mob-link, y sin excluirlo cerraria el menu entero en vez de
-    // desplegar su submenu.
-    mobileNav
-      .querySelectorAll('.mob-link:not(.mob-toggle), .mob-cta, .mob-portal, .mob-submenu a')
-      .forEach((link) => {
-        link.addEventListener('click', () => {
-          mobileNav.classList.remove('open');
-          hamburger.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
-        });
-      });
-  }
+    };
 
-  // Menu desplegable de Services. En escritorio el CSS ya lo abre al pasar el
-  // raton; esto anade el teclado, que es lo que el hover no cubre.
-  const servicesToggle = document.getElementById('servicesToggle');
-  const servicesMenu = document.getElementById('servicesMenu');
-  if (servicesToggle && servicesMenu) {
-    const setOpen = (open) => servicesToggle.setAttribute('aria-expanded', String(open));
-    const isOpen = () => servicesToggle.getAttribute('aria-expanded') === 'true';
-
-    servicesToggle.addEventListener('click', (event) => {
-      event.preventDefault();
-      setOpen(!isOpen());
-    });
-
-    document.addEventListener('click', (event) => {
-      if (isOpen() && !servicesToggle.parentElement.contains(event.target)) setOpen(false);
-    });
-
+    hamburger.addEventListener('click', () => setMobileMenu(!mobileNav.classList.contains('open')));
+    mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMobileMenu(false)));
     document.addEventListener('keydown', (event) => {
-      if (event.key !== 'Escape' || !isOpen()) return;
-      setOpen(false);
-      servicesToggle.focus();
+      if (event.key === 'Escape' && mobileNav.classList.contains('open')) {
+        setMobileMenu(false);
+        hamburger.focus();
+      }
     });
-
-    // Al navegar a un enlace el menu debe quedar cerrado para la siguiente pagina.
-    servicesMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => setOpen(false));
-    });
-  }
-
-  // Categorias plegables: al pulsar una, sus servicios aparecen debajo y las
-  // demas se cierran, para que el panel no crezca sin control.
-  document.querySelectorAll('.nav-dd-cat').forEach((cat) => {
-    const panel = document.getElementById(cat.getAttribute('aria-controls'));
-    if (!panel) return;
-
-    cat.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const abrir = cat.getAttribute('aria-expanded') !== 'true';
-
-      const hermanas = cat.closest('.nav-dd-cols, .mob-submenu');
-      hermanas?.querySelectorAll('.nav-dd-cat').forEach((otra) => {
-        otra.setAttribute('aria-expanded', 'false');
-        document.getElementById(otra.getAttribute('aria-controls'))?.classList.remove('open');
-      });
-
-      cat.setAttribute('aria-expanded', String(abrir));
-      panel.classList.toggle('open', abrir);
-    });
-  });
-
-  // La primera categoria arranca abierta: el panel nunca se ve vacio.
-  document.querySelectorAll('.nav-dd-cols, .mob-submenu').forEach((cont) => {
-    const primera = cont.querySelector('.nav-dd-cat');
-    if (!primera) return;
-    primera.setAttribute('aria-expanded', 'true');
-    document.getElementById(primera.getAttribute('aria-controls'))?.classList.add('open');
-  });
-
-  const mobServicesToggle = document.getElementById('mobServicesToggle');
-  const mobServicesMenu = document.getElementById('mobServicesMenu');
-  if (mobServicesToggle && mobServicesMenu) {
-    mobServicesToggle.addEventListener('click', () => {
-      const open = mobServicesMenu.classList.toggle('open');
-      mobServicesToggle.setAttribute('aria-expanded', String(open));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1120 && mobileNav.classList.contains('open')) setMobileMenu(false);
     });
   }
 
