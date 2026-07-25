@@ -220,7 +220,11 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; line-height: 1.15; }
   border-top: 1px solid var(--border-sub);
   background: rgba(7, 8, 15, 0.98);
 }
-.mobile-nav.open { display: flex; }
+.mobile-nav.open {
+  display: flex;
+  max-height: calc(100vh - 84px);
+  overflow-y: auto;
+}
 .mob-link {
   padding: 11px 14px; border-radius: 10px;
   font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem;
