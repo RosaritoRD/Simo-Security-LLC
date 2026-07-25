@@ -55,6 +55,36 @@
     });
   }
 
+  // Categorias plegables: al pulsar una, sus servicios aparecen debajo y las
+  // demas se cierran, para que el panel no crezca sin control.
+  document.querySelectorAll('.nav-dd-cat').forEach((cat) => {
+    const panel = document.getElementById(cat.getAttribute('aria-controls'));
+    if (!panel) return;
+
+    cat.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const abrir = cat.getAttribute('aria-expanded') !== 'true';
+
+      const hermanas = cat.closest('.nav-dd-cols, .mob-submenu');
+      hermanas?.querySelectorAll('.nav-dd-cat').forEach((otra) => {
+        otra.setAttribute('aria-expanded', 'false');
+        document.getElementById(otra.getAttribute('aria-controls'))?.classList.remove('open');
+      });
+
+      cat.setAttribute('aria-expanded', String(abrir));
+      panel.classList.toggle('open', abrir);
+    });
+  });
+
+  // La primera categoria arranca abierta: el panel nunca se ve vacio.
+  document.querySelectorAll('.nav-dd-cols, .mob-submenu').forEach((cont) => {
+    const primera = cont.querySelector('.nav-dd-cat');
+    if (!primera) return;
+    primera.setAttribute('aria-expanded', 'true');
+    document.getElementById(primera.getAttribute('aria-controls'))?.classList.add('open');
+  });
+
   const mobServicesToggle = document.getElementById('mobServicesToggle');
   const mobServicesMenu = document.getElementById('mobServicesMenu');
   if (mobServicesToggle && mobServicesMenu) {

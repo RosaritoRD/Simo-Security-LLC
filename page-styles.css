@@ -250,7 +250,7 @@ body::selection { color: #07080f; background: #e5c96c; }
   .service-link-card { transition: none; }
 }
 
-/* --- Menu desplegable de Services (columna vertical, estilo Amazon) ------ */
+/* --- Menu de Services: categorias plegables (patron Amazon) -------------- */
 
 .nav-dropdown { position: relative; }
 
@@ -267,15 +267,15 @@ body::selection { color: #07080f; background: #e5c96c; }
   cursor: pointer;
 }
 
-.nav-dropdown-toggle i { font-size: 0.62rem; transition: transform 0.2s ease; }
-.nav-dropdown-toggle[aria-expanded="true"] i { transform: rotate(180deg); }
+.nav-dropdown-toggle > i { font-size: 0.62rem; transition: transform 0.2s ease; }
+.nav-dropdown-toggle[aria-expanded="true"] > i { transform: rotate(180deg); }
 
-/* Una sola columna estrecha anclada al boton, no un panel ancho centrado:
-   se recorre de arriba abajo y no tapa el resto de la pagina. */
+/* Panel estrecho: solo muestra las cuatro categorias. Los servicios aparecen
+   al desplegar una de ellas, no todos a la vez. */
 .nav-dropdown-menu {
-  width: 440px;
+  width: 300px;
   max-width: calc(100vw - 32px);
-  padding: 16px 16px 10px;
+  padding: 8px;
   position: absolute;
   top: calc(100% + 12px);
   left: 0;
@@ -290,8 +290,6 @@ body::selection { color: #07080f; background: #e5c96c; }
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
 }
 
-/* Puente invisible entre boton y panel: sin el, el menu se cierra al cruzar
-   el hueco con el raton. */
 .nav-dropdown::after {
   content: "";
   height: 16px;
@@ -311,67 +309,89 @@ body::selection { color: #07080f; background: #e5c96c; }
   transform: translateY(0);
 }
 
-/* Dos columnas: los 14 servicios entran completos, sin scroll y sin que el
-   panel se estire a lo ancho del header. */
-.nav-dd-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px 18px;
+.nav-dd-cols { display: block; }
+
+/* Cabecera de categoria: fila completa pulsable. */
+.nav-dd-cat {
+  width: 100%;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--page-text);
+  font: 600 0.86rem/1.3 'Montserrat', sans-serif;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.13s ease;
 }
 
-.nav-dd-group { align-content: start; }
+.nav-dd-cat:hover,
+.nav-dd-cat:focus-visible { background: rgba(201, 168, 76, 0.1); }
 
-.nav-dd-heading {
-  margin: 0 0 2px;
-  padding: 4px 10px;
+.nav-dd-cat > i:first-child {
+  width: 16px;
   color: var(--page-gold);
-  font: 700 0.62rem/1.2 'Montserrat', sans-serif;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+  font-size: 0.82rem;
+  text-align: center;
 }
 
-/* Filas completas resaltables de lado a lado, como una lista seleccionable. */
-.nav-dd-link {
-  padding: 8px 10px;
+.nav-dd-cat > span { flex: 1; }
+
+.nav-dd-caret {
+  font-size: 0.6rem;
+  color: var(--page-muted);
+  transition: transform 0.2s ease;
+}
+
+.nav-dd-cat[aria-expanded="true"] { background: rgba(201, 168, 76, 0.08); }
+.nav-dd-cat[aria-expanded="true"] .nav-dd-caret { transform: rotate(180deg); }
+
+/* Los servicios de la categoria, debajo de su cabecera. */
+.nav-dd-sub {
+  display: none;
+  margin: 2px 0 6px 22px;
+  padding-left: 12px;
+  border-left: 1px solid rgba(201, 168, 76, 0.22);
+}
+
+.nav-dd-sub.open { display: block; }
+
+.nav-dd-link,
+.mob-dd-link {
+  padding: 7px 9px;
   display: block;
   color: var(--page-muted);
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   line-height: 1.35;
-  border-radius: 7px;
+  border-radius: 6px;
   transition: color 0.13s ease, background 0.13s ease;
 }
 
-.nav-dd-link:hover,
-.nav-dd-link:focus-visible {
+.nav-dd-link:hover, .nav-dd-link:focus-visible,
+.mob-dd-link:hover, .mob-dd-link:focus-visible {
   color: var(--page-text);
   background: rgba(201, 168, 76, 0.12);
 }
 
-/* Se queda pegado al fondo del panel: es la accion principal y no debe
-   desaparecer al desplazar la lista. */
 .nav-dropdown-all {
-  margin-top: 12px;
-  padding: 11px 6px 4px;
+  margin-top: 6px;
+  padding: 11px 10px 6px;
   display: block;
   color: var(--page-gold-light);
   font: 600 0.8rem/1 'Montserrat', sans-serif;
   border-top: 1px solid var(--page-line);
-  background: rgba(9, 11, 20, 0.99);
 }
 
 .nav-dropdown-all i { margin-left: 6px; font-size: 0.7rem; }
 
-/* Si el boton queda muy a la derecha, el panel se ancla por la derecha para
-   no salirse de la pantalla. */
 @media (max-width: 1100px) {
   .nav-dropdown-menu { left: auto; right: 0; }
 }
 
-@media (max-width: 520px) {
-  .nav-dd-cols { grid-template-columns: 1fr; }
-}
-
-/* Submenu movil: mismos grupos, apilados en el acordeon. */
+/* Movil: el mismo acordeon dentro del menu hamburguesa. */
 .mob-toggle {
   width: 100%;
   display: flex;
@@ -391,34 +411,24 @@ body::selection { color: #07080f; background: #e5c96c; }
 .mob-submenu {
   display: none;
   margin: 2px 0 6px 6px;
-  padding: 6px 0 8px 14px;
+  padding: 4px 0 8px 10px;
   border-left: 1px solid var(--page-line);
 }
 
 .mob-submenu.open { display: block; }
-.mob-dd-group + .mob-dd-group { margin-top: 12px; }
-
-.mob-dd-heading {
-  margin: 0 0 4px;
-  color: var(--page-gold);
-  font: 700 0.62rem/1.2 'Montserrat', sans-serif;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.mob-submenu a { padding: 7px 0; display: block; color: var(--page-muted); font-size: 0.85rem; }
-.mob-submenu a:hover { color: var(--page-text); }
 
 .mob-dd-all {
-  margin-top: 12px;
+  margin-top: 10px;
   padding-top: 10px !important;
+  display: block;
   color: var(--page-gold-light) !important;
   font-weight: 600;
   border-top: 1px solid var(--page-line);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-dropdown-menu, .nav-dropdown-toggle i, .mob-toggle i { transition: none; }
+  .nav-dropdown-menu, .nav-dropdown-toggle > i,
+  .nav-dd-caret, .mob-toggle i { transition: none; }
 }
 
 /* "Portals" era un enlace de texto identico a About o Services, asi que un
